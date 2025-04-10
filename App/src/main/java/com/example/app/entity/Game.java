@@ -22,6 +22,8 @@ public class Game {
 
     private int numberOfTeams;
 
+    private int numberOfCountries;
+
     @Enumerated(EnumType.STRING)
     private GamePhase phase;
 

@@ -9,5 +9,6 @@ import lombok.Data;
 public class GameDTO {
     private Long id;
     private int numberOfTeams;
+    private int numberOfCountries;
     private GamePhase phase;
 }
