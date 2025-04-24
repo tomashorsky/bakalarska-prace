@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Your Team</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body class="container mt-5">
+
+<h1 class="text-center mb-4">Zvol si svůj tým</h1>
+
+<div class="d-grid gap-4 col-5 mx-auto">
+    <button type="button"
+            class="btn btn-lg text-white py-4"
+            th:each="team : ${teams}"
+            th:text="${team.name}"
+            th:style="'background-color:' + ${team.colorHex}"
+            th:onclick="'selectTeam(' + ${team.id} + ',' + ${game.id} + ')'">
+    </button>
+</div>
+
+<script>
+    function selectTeam(teamId, gameId) {
+        localStorage.setItem("playerTeamId", teamId);
+        localStorage.setItem("gameId", gameId);
+        window.location.href = "/teams/" + teamId;
+    }
+</script>
+
+</body>
+</html>

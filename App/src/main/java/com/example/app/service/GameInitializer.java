@@ -59,6 +59,7 @@ public class GameInitializer {
             if(i >= game.getNumberOfTeams()) {
                 break;
             }
+            i++;
             Team team = new Team();
             team.setName(teamData.getName());
             team.setColorHex(teamData.getColorHex());
