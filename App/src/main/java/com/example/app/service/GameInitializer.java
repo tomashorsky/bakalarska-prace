@@ -11,7 +11,6 @@ import com.example.app.repository.OpinionRateRepository;
 import com.example.app.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor

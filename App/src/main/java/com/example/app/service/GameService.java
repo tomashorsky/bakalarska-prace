@@ -18,15 +18,12 @@ public class GameService {
 
     // Get all games
     public List<GameDTO> getAllGames() {
-        return gameRepository.findAll().stream()
-                .map(this::gameToDTO)
-                .toList();
+        return gameRepository.findAll().stream().map(this::gameToDTO).toList();
     }
 
     // Get game by ID
     public GameDTO getGame(Long id) {
-        Game game = gameRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Game not found"));
+        Game game = gameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Game not found"));
         return gameToDTO(game);
     }
 
@@ -52,18 +49,14 @@ public class GameService {
 
     // Change the game phase
     public GameDTO changeGamePhase(Long id, GamePhase phase) {
-        Game game = gameRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Game not found"));
-
+        Game game = gameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Game not found"));
         game.setPhase(phase);
-
         return gameToDTO(gameRepository.save(game));
     }
 
     // Delete a game
     public void deleteGame(Long id) {
-        Game game = gameRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Game not found"));
+        Game game = gameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Game not found"));
         gameRepository.delete(game);
     }
 
