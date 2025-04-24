@@ -1,0 +1,27 @@
+package com.example.app.controller;
+
+import com.example.app.service.ToolService;
+import org.springframework.ui.Model;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Controller
+@RequiredArgsConstructor
+public class ToolController {
+    private final ToolService toolService;
+
+    @GetMapping("/teams/{teamId}/tools")
+    public String getTools(Model model, @PathVariable Long teamId) {
+        // TODO: Implement
+        return "tools/list";
+    }
+
+    @PostMapping("/teams/{teamId}/tools")
+    public String addTool(@PathVariable Long teamId, @RequestParam String toolName, Model model) {
+        // TODO: Implement
+        return "redirect:/tools";
+    }
+}
