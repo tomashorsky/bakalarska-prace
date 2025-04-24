@@ -23,7 +23,6 @@ public class GameInitializer {
     private final GameDefaultsProperties gameDefaults;
 
 
-    @Transactional
     public void initializeGame(Game game) {
         initializeCountries(game);
         initializeTeams(game);
@@ -46,6 +45,7 @@ public class GameInitializer {
             country.setTrustInState(countryData.getTrustInState());
             country.setEconomy(countryData.getEconomy());
             country.setGame(game);
+            game.getCountries().add(country);
             countryRepository.save(country);
         }
     }
@@ -65,6 +65,7 @@ public class GameInitializer {
             team.setColorHex(teamData.getColorHex());
             team.setManipulation(teamData.getManipulation());
             team.setGame(game);
+            game.getTeams().add(team);
             teamRepository.save(team);
         }
     }
