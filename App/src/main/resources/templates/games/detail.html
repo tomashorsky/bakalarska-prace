@@ -1,10 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="'Game #' + ${game.id}">Game Detail</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 </head>
-<body>
+<body class="container mt-5">
 
+<h2 class="mb-4" th:text="'Game #' + ${game.id} + ' Details'">Game Details</h2>
+
+<!-- Game info -->
+<p><strong>Created:</strong>
+    <span th:text="${#temporals.format(game.createdAt, 'dd.MM. yyyy')}">01.04.2025</span>
+</p>
+
+<!-- Change game phase -->
+<form th:action="@{/admin/games/{id}/phase(id=${game.id})}" method="post" class="mb-5">
+    <div class="row g-2 align-items-center">
+        <div class="col-auto">
+            <label for="phase" class="col-form-label"><strong>Phase:</strong></label>
+        </div>
+        <div class="col-auto">
+            <select name="phase" id="phase" class="form-select">
+                <option th:each="phase : ${T(com.example.app.enums.GamePhase).values()}"
+                        th:value="${phase}"
+                        th:text="${phase}"
+                        th:selected="${phase == game.phase}">
+                </option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-outline-primary">Change Phase</button>
+        </div>
+    </div>
+</form>
+
+<!-- Teams list -->
+<h4>Teams</h4>
+<table class="table table-bordered table-hover mb-5">
+    <thead class="table-light">
+    <tr>
+        <th>ID</th>
+        <th>Color</th>
+        <th>Manipulation</th>
+        <th>Number Of Tools</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="team : ${teams}">
+        <td th:text="${team.id}"></td>
+        <td>
+            <span th:text="${team.color}"></span>
+            <span class="ms-2 rounded-circle d-inline-block"
+                  th:style="'background-color:' + ${team.colorHex} + '; width: 15px; height: 15px;'">
+            </span>
+        </td>
+        <td th:text="${team.manipulation}"></td>
+        <td th:text="${team.numberOfTools}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Countries list  -->
+<h4>Countries</h4>
+<table class="table table-bordered">
+    <thead class="table-light">
+    <tr>
+        <th>Name</th>
+        <th>Polarization</th>
+        <th>Trust in State</th>
+        <th>Economy</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="country : ${countries}">
+        <td th:text="${country.name}"></td>
+        <td th:text="${country.polarization}"></td>
+        <td th:text="${country.trustInState}"></td>
+        <td th:text="${country.economy}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/admin/games}" class="btn-secondary">Back to the Game list</a>
 </body>
 </html>

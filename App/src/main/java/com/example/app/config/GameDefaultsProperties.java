@@ -28,7 +28,7 @@ public class GameDefaultsProperties {
     @Getter
     @Setter
     public static class TeamData {
-        private String color;
+        private String name;
         private String colorHex;
         private String manipulation;
     }

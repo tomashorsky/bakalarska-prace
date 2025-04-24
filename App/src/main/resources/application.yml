@@ -21,18 +21,22 @@ game-defaults:
       economy: VERY_GOOD
 
   teams:
-    - color: "Modrá"
-      colorHex: "#0000FF"
+    - name: "Modrý tým"
+      colorHex: "#0dcaf0"
       manipulation: "Modrá manipulace"
 
-    - color: "Červená"
-      colorHex: "#FF0000"
+    - name: "Červený tým"
+      colorHex: "#dc3545"
       manipulation: "Rudá manipulace"
 
-    - color: "Zelená"
-      colorHex: "#00FF00"
+    - name: "Zelený tým"
+      colorHex: "#198754"
       manipulation: "Velmi dlouhá a delší manipulace xxxxx"
 
-    - color: "Žlutá"
-      colorHex: "#FFFF00"
+    - name: "Oranžový tým"
+      colorHex: "#fd7e14"
+      manipulation: "Žlutá dezinformace"
+
+    - name: "Oranžový tým"
+      colorHex: "#fd7e14"
       manipulation: "Žlutá dezinformace"

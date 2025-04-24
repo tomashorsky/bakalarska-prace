@@ -48,10 +48,10 @@ public class GameService {
     }
 
     // Change the game phase
-    public GameDTO changeGamePhase(Long id, GamePhase phase) {
+    public void changeGamePhase(Long id, GamePhase phase) {
         Game game = gameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Game not found"));
         game.setPhase(phase);
-        return gameToDTO(gameRepository.save(game));
+        gameToDTO(gameRepository.save(game));
     }
 
     // Delete a game

@@ -60,7 +60,7 @@ public class GameInitializer {
                 break;
             }
             Team team = new Team();
-            team.setColor(teamData.getColor());
+            team.setName(teamData.getName());
             team.setColorHex(teamData.getColorHex());
             team.setManipulation(teamData.getManipulation());
             team.setGame(game);

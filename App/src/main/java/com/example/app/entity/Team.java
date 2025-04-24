@@ -19,7 +19,7 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String color;
+    private String name;
     private String colorHex;
     private String manipulation;
 

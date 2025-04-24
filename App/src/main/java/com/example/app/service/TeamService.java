@@ -28,10 +28,11 @@ public class TeamService {
     private TeamDTO teamToDTO(Team team) {
         TeamDTO teamDTO = new TeamDTO();
         teamDTO.setId(team.getId());
-        teamDTO.setColor(team.getColor());
+        teamDTO.setName(team.getName());
         teamDTO.setColorHex(team.getColorHex());
         teamDTO.setManipulation(team.getManipulation());
         teamDTO.setGameId(team.getGame().getId());
+        teamDTO.setNumberOfTools(team.getTools().size());
         return teamDTO;
     }
 }

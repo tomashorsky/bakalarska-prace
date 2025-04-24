@@ -31,7 +31,7 @@
         <td th:text="${game.numberOfCountries}"></td>
         <td th:text="${game.phase}"></td>
         <td>
-            <a th:href="@{/admin/games/{id}(id=${game.id})}" class="btn btn-primary btn-sm">View</a>
+            <a th:href="@{/admin/games/{id}(id=${game.id})}" class="btn btn-primary btn-sm">Detail</a>
             <form th:action="@{/admin/games/{id}(id=${game.id})}" method="post" th:object="${game}" style="display:inline;">
                 <input type="hidden" name="_method" value="delete"/>
                 <button type="submit"

@@ -11,8 +11,9 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 public class TeamDTO {
     private Long id;
-    private String color;
+    private String name;
     private String colorHex;
     private String manipulation;
     private Long gameId;
+    private int NumberOfTools;
 }
