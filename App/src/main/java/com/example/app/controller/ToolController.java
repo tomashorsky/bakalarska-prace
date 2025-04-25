@@ -1,5 +1,6 @@
 package com.example.app.controller;
 
+import com.example.app.dto.ToolDTO;
 import com.example.app.service.ToolService;
 import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
@@ -15,8 +16,16 @@ public class ToolController {
 
     @GetMapping("/teams/{teamId}/tools")
     public String getTools(Model model, @PathVariable Long teamId) {
-        // TODO: Implement
+        List<ToolDTO> tools = toolService.getToolsByTeamId(teamId);
+
+        model.addAttribute("tools", tools);
         return "tools/list";
+    }
+
+    @GetMapping("/teams/{teamId}/tools/add")
+    public String addTool(Model model, @PathVariable Long teamId) {
+        model.addAttribute("tool", new ToolDTO());
+        return "tools/add";
     }
 
     @PostMapping("/teams/{teamId}/tools")

@@ -1,10 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="${team.name}">Team Detail</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 </head>
-<body>
+<body class="container text-center mt-5">
+
+<!-- Team information-->
+<div class="text-center mb-5">
+    <h1 th:text="${team.name}">Název týmu</h1>
+    <p class="fs-5">
+        Úkolem tvého týmu je šířit manipulaci:
+        <strong><span th:text="${team.manipulation}">dezinformace</span></strong>
+    </p>
+</div>
+
+<!-- Actions -->
+<div class="mb-5">
+    <h3>🧠 Vlivové operace</h3>
+    <p>Prováděj psychologické a informační operace pro ovlivnění veřejného mínění.</p>
+    <a th:href="@{/teams/{id}/actions(id=${team.getId()})}" class="btn btn-lg btn-primary ">Provést operaci</a>
+</div>
+
+<!-- Tools -->
+<div class="mb-5">
+    <h3 class="text-rg-end">🛠️ Manipulační nástroje</h3>
+    <p>Spravuj nástroje, které ti pomáhají ovládat narativ a manipulovat informacemi.</p>
+    <div class="gap-3 flex-wrap">
+        <a th:href="@{/teams/{id}/tools(id=${team.getId()})}" class="btn btn-lg btn-warning text-dark">Zobrazit nástroje</a>
+        <a th:href="@{/teams/{id}/tools/add(id=${team.getId()})}" class="btn btn-lg btn-warning">Přidat nástroj</a>
+    </div>
+</div>
+
+<!-- Countries -->
+<div class="mb-5">
+    <h3>🗺️ Státy</h3>
+    <p>Zobraz aktuální stav a vliv týmu v jednotlivých zemích.</p>
+    <a th:href="@{games/{id}/cauntries/list(id=${team.getGameId()})}" class="btn btn-lg btn-success">Zobrazit státy</a>
+</div>
 
 </body>
 </html>

@@ -42,7 +42,7 @@ public class GameController {
         return "games/detail";
     }
 
-    @GetMapping("admin/games/new")
+    @GetMapping("admin/games/new") //TODO: change to add
     public String showCreateForm(Model model) {
         GameDTO game =  GameDTO.builder().numberOfCountries(4).build();
 
