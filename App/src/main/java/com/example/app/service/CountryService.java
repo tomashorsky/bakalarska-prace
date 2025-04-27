@@ -18,7 +18,6 @@ public class CountryService {
         return countryRepository.findAllByGameId(gameId).stream().map(this::countryToDTO).toList();
     }
 
-
     // get country by id
     public CountryDTO getCountry(Long id) {
         Country country = countryRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Country not found"));

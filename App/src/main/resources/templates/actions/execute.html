@@ -2,14 +2,70 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Select Your Team</title>
+    <title>Výběr akce</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 </head>
 <body class="container mt-5">
 
-<h1 class="text-center mb-4">Execute action</h1>
+<h1 class="text-center mb-5" th:text="${team.name}">Tým XYZ</h1>
 
 
+<form th:action="@{/teams/{id}/actions/execute(id=${team.id})}" method="post">
+
+    <!-- Select Action -->
+    <input type="hidden" name="actionType" id="selectedAction" required />
+
+    <h3 class="mb-3">Zvol akci:</h3>
+    <div class="mb-4">
+        <div class="card mb-3"
+             th:each="type : ${actionTypes}"
+             th:attr="data-action=${type.name()}"
+             onclick="selectAction(this)"
+             style="cursor: pointer;">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${type.getName()}">Název akce</h5>
+                <p class="card-text" th:text="${type.getDescription()}">Popisek</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Select Country -->
+    <h3 class="mt-5 mb-3">Zvol cílovou zemi:</h3>
+    <div class="btn-group d-flex flex-wrap gap-2" role="group">
+        <div th:each="country, iter : ${countries}">
+            <input type="radio"
+                   class="btn-check"
+                   name="countryId"
+                   th:id="'country-' + ${iter.index}"
+                   th:value="${country.id}"
+                   autocomplete="off"
+                   required>
+            <label class="btn btn-outline-primary"
+                   th:for="'country-' + ${iter.index}"
+                   th:text="${country.name}">
+            </label>
+        </div>
+    </div>
+
+
+    <!-- Back and Submit -->
+    <div class="row mt-5">
+        <div class="col text-start">
+            <a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-primary">Zpět na tým</a>
+        </div>
+        <div class="col text-end">
+            <button type="submit" class="btn btn-danger btn-lg">🚀 Provést akci</button>
+        </div>
+    </div>
+</form>
+
+<script>
+    function selectAction(card) {
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('bg-primary', 'text-white'));
+        card.classList.add('bg-primary', 'text-white');
+        document.getElementById('selectedAction').value = card.getAttribute('data-action');
+    }
+</script>
 
 </body>
 </html>

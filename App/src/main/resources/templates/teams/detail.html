@@ -5,10 +5,11 @@
     <title th:text="${team.name}">Team Detail</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 </head>
-<body class="container text-center mt-5">
+<body class="container text-center mt-4">
+<div th:if="${successMessage}" class="alert alert-success" role="alert" th:utext="${successMessage}"></div>
 
 <!-- Team information-->
-<div class="text-center mb-5">
+<div class="text-center mb-4">
     <h1 th:text="${team.name}">Název týmu</h1>
     <p class="fs-5">
         Úkolem tvého týmu je šířit manipulaci:
@@ -17,27 +18,27 @@
 </div>
 
 <!-- Actions -->
-<div class="mb-5">
-    <h3>🧠 Vlivové operace</h3>
+<div class="mb-4">
+    <h3>Manipulační akce</h3>
     <p>Prováděj psychologické a informační operace pro ovlivnění veřejného mínění.</p>
-    <a th:href="@{/teams/{id}/actions(id=${team.getId()})}" class="btn btn-lg btn-primary ">Provést operaci</a>
+    <a th:href="@{/teams/{id}/actions(id=${team.getId()})}" class="btn btn-lg btn-primary ">Provést akci ⚡</a>
 </div>
 
 <!-- Tools -->
-<div class="mb-5">
-    <h3 class="text-rg-end">🛠️ Manipulační nástroje</h3>
+<div class="mb-4">
+    <h3 class="text-rg-end">Manipulační nástroje</h3>
     <p>Spravuj nástroje, které ti pomáhají ovládat narativ a manipulovat informacemi.</p>
-    <div class="gap-3 flex-wrap">
-        <a th:href="@{/teams/{id}/tools(id=${team.getId()})}" class="btn btn-lg btn-warning text-dark">Zobrazit nástroje</a>
-        <a th:href="@{/teams/{id}/tools/add(id=${team.getId()})}" class="btn btn-lg btn-warning">Přidat nástroj</a>
+    <div class="gap-3 flex-wrap d-flex justify-content-center">
+        <a th:href="@{/teams/{id}/tools(id=${team.getId()})}" class="btn btn-lg btn-warning text-dark">Zobrazit nástroje 🛠️</a>
+        <a th:href="@{/teams/{id}/tools/add(id=${team.getId()})}" class="btn btn-lg btn-warning">➕ Přidat nástroj</a>
     </div>
 </div>
 
 <!-- Countries -->
-<div class="mb-5">
-    <h3>🗺️ Státy</h3>
+<div class="mb-4">
+    <h3>Státy</h3>
     <p>Zobraz aktuální stav a vliv týmu v jednotlivých zemích.</p>
-    <a th:href="@{games/{id}/cauntries/list(id=${team.getGameId()})}" class="btn btn-lg btn-success">Zobrazit státy</a>
+    <a th:href="@{games/{id}/cauntries/list(id=${team.getGameId()})}" class="btn btn-lg btn-success">Zobrazit státy 🗺️</a>
 </div>
 
 </body>

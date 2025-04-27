@@ -15,7 +15,7 @@ game-defaults:
       trustInState: 0.6
       economy: AVERAGE
 
-    - name: "Slovensko"
+    - name: "Maďarsko"
       polarization: 0.4
       trustInState: 0.6
       economy: VERY_GOOD

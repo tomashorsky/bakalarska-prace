@@ -1,15 +1,32 @@
 package com.example.app.service;
 
+import com.example.app.entity.Action;
+import com.example.app.entity.Country;
+import com.example.app.entity.Team;
+import com.example.app.enums.ActionType;
 import com.example.app.repository.ActionRepository;
+import com.example.app.repository.CountryRepository;
+import com.example.app.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class ActionService {
-    private final ActionRepository actionRepository;
+    private final TeamRepository teamRepository;
+    private final CountryRepository countryRepository;
 
+    @Transactional
+    public String executeAction(Long teamId, Long countryId, String actionType) {
+        Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
+        Country country = countryRepository.findById(countryId).orElseThrow(() -> new IllegalArgumentException("Country not found"));
 
+        Action action = new Action();
+        action.setActionType(ActionType.valueOf(actionType));
+        int result = ActionResolver.resolveAction(action, team, country);
+        return "Manipulační akcí na stát " + country.getName() + " jste získali jste <strong>" + result +
+                "</strong>  tisíc nových zmanipulovaných.";
+    }
 }

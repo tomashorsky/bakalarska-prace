@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ToolRepository extends JpaRepository<Tool, Long> {
 
-    public List<Tool> findAllByTeamId(Long teamId);
+    List<Tool> findAllByTeamId(Long teamId);
 }
 
