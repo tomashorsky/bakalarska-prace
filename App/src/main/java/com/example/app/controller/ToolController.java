@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -22,15 +23,36 @@ public class ToolController {
         return "tools/list";
     }
 
+    @PostMapping("/teams/{teamId}/tools/execute")
+    public String executeTool(
+            @PathVariable Long teamId,
+            @RequestParam Long toolId,
+            @RequestParam Long countryId,
+            RedirectAttributes redirectAttributes
+    ) {
+        String message = toolService.executeTool(teamId, toolId, countryId);
+
+        redirectAttributes.addFlashAttribute("successMessage", message);
+        return "redirect:/teams/" + teamId;
+    }
+
     @GetMapping("/teams/{teamId}/tools/add")
     public String addTool(Model model, @PathVariable Long teamId) {
         model.addAttribute("tool", new ToolDTO());
         return "tools/add";
     }
 
-    @PostMapping("/teams/{teamId}/tools")
-    public String addTool(@PathVariable Long teamId, @RequestParam String toolName, Model model) {
-        // TODO: Implement
-        return "redirect:/tools";
+    @PostMapping("/teams/{teamId}/tools/add")
+    public String addTool(
+            @PathVariable Long teamId,
+            @RequestParam String toolType,
+            RedirectAttributes redirectAttributes
+    ) {
+        String message = toolService.addTool(teamId, toolType);
+
+        redirectAttributes.addFlashAttribute("successMessage", message);
+        return "redirect:/teams/"+teamId+"/tools";
     }
+
+
 }

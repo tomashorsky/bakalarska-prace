@@ -35,7 +35,12 @@ public class ActionController {
     }
 
     @PostMapping("/teams/{teamId}/actions/execute")
-    public String executeAction(@PathVariable Long teamId, @RequestParam Long countryId, @RequestParam String actionType, RedirectAttributes redirectAttributes) {
+    public String executeAction(
+            @PathVariable Long teamId,
+            @RequestParam Long countryId,
+            @RequestParam String actionType,
+            RedirectAttributes redirectAttributes
+    ) {
         String message = actionService.executeAction(teamId, countryId, actionType);
 
         redirectAttributes.addFlashAttribute("successMessage", message);

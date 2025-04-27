@@ -10,7 +10,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ActionResolver {
 
-    public static int resolveAction(Action action, Team team, Country country) {
+    public static int resolveActionExecution(Action action, Team team, Country country) {
+        //TODO: Implement
        return 0;
     }
 }

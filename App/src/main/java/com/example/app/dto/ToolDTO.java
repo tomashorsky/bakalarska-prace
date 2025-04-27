@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -15,4 +17,5 @@ public class ToolDTO {
     private ToolType type;
     private int level;
     private Long teamId;
+    private LocalDateTime canBeUsedAt;
 }

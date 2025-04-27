@@ -4,7 +4,6 @@ import com.example.app.entity.Action;
 import com.example.app.entity.Country;
 import com.example.app.entity.Team;
 import com.example.app.enums.ActionType;
-import com.example.app.repository.ActionRepository;
 import com.example.app.repository.CountryRepository;
 import com.example.app.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +24,7 @@ public class ActionService {
 
         Action action = new Action();
         action.setActionType(ActionType.valueOf(actionType));
-        int result = ActionResolver.resolveAction(action, team, country);
+        int result = ActionResolver.resolveActionExecution(action, team, country);
         return "Manipulační akcí na stát " + country.getName() + " jste získali jste <strong>" + result +
                 "</strong>  tisíc nových zmanipulovaných.";
     }
