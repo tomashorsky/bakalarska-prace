@@ -1,6 +1,8 @@
 package com.example.app.controller;
 
+import com.example.app.dto.TeamDTO;
 import com.example.app.dto.ToolDTO;
+import com.example.app.service.TeamService;
 import com.example.app.service.ToolService;
 import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +16,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ToolController {
     private final ToolService toolService;
+    private final TeamService teamService;
 
     @GetMapping("/teams/{teamId}/tools")
     public String getTools(Model model, @PathVariable Long teamId) {
         List<ToolDTO> tools = toolService.getToolsByTeamId(teamId);
+        TeamDTO team = teamService.getTeam(teamId);
 
         model.addAttribute("tools", tools);
+        model.addAttribute("team", team);
         return "tools/list";
     }
 

@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public abstract class InfluenceOperation {
+    private String name;
     private float impact;
     private float polarizationImpact;
     private float trustInStateImpact;

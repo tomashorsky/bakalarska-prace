@@ -1,10 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Manipulační nástroje</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 </head>
-<body>
+<body class="container mt-5">
+
+<h1 class="text-center mb-5">Manipulační nástroje</h1>
+
+<form th:action="@{/teams/{teamId}/tools/execute(teamId=${team.id})}" method="post">
+
+    <input type="hidden" name="toolId" id="selectedTool" required />
+
+    <!-- Karty s nástroji -->
+    <h3 class="mb-3">Vyber nástroj:</h3>
+    <div class="mb-4">
+        <div class="card mb-3"
+             th:each="tool : ${tools}"
+             th:attr="data-tool-id=${tool.id}, data-can-be-used-at=${tool.canBeUsedAt}"
+             onclick="selectTool(this)"
+             style="cursor: pointer;">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${tool.type}">Název nástroje</h5>
+                <p class="card-text">Úroveň: <span th:text="${tool.level}"></span></p>
+                <p class="card-text text-muted">
+                    Dostupné za: <span class="countdown" th:id="'countdown-' + ${tool.id}"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Výběr země -->
+    <h3 class="mt-5 mb-3">Zvol cílovou zemi:</h3>
+    <div class="btn-group d-flex flex-wrap gap-2" role="group">
+        <div th:each="country, iter : ${countries}">
+            <input type="radio"
+                   class="btn-check"
+                   name="countryId"
+                   th:id="'country-' + ${iter.index}"
+                   th:value="${country.id}"
+                   autocomplete="off"
+                   required>
+            <label class="btn btn-outline-primary"
+                   th:for="'country-' + ${iter.index}"
+                   th:text="${country.name}">
+            </label>
+        </div>
+    </div>
+
+    <!-- Tlačítka -->
+    <div class="row mt-5">
+        <div class="col text-start">
+            <a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-primary">← Zpět na tým</a>
+        </div>
+        <div class="col text-end">
+            <button type="submit" class="btn btn-danger btn-lg">🚀 Použít nástroj</button>
+        </div>
+    </div>
+
+</form>
+
+<!-- JS pro odpočítávání a výběr nástroje -->
+<script>
+    function selectTool(card) {
+        const now = new Date();
+        const availableAt = new Date(card.getAttribute('data-can-be-used-at'));
+
+        if (availableAt > now) {
+            alert("Tento nástroj ještě není dostupný!");
+            return;
+        }
+
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('bg-primary', 'text-white'));
+        card.classList.add('bg-primary', 'text-white');
+        document.getElementById('selectedTool').value = card.getAttribute('data-tool-id');
+    }
+
+    function updateCountdowns() {
+        const countdownElements = document.querySelectorAll('.countdown');
+
+        countdownElements.forEach(el => {
+            const parent = el.closest('.card');
+            const availableAt = new Date(parent.getAttribute('data-can-be-used-at'));
+            const now = new Date();
+
+            const diff = availableAt - now;
+
+            if (diff <= 0) {
+                el.innerText = "dostupné";
+            } else {
+                const minutes = Math.floor(diff / 60000);
+                const seconds = Math.floor((diff % 60000) / 1000);
+                el.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+        });
+    }
+
+    setInterval(updateCountdowns, 1000);
+    updateCountdowns();
+</script>
 
 </body>
 </html>

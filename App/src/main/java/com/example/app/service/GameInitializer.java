@@ -40,7 +40,7 @@ public class GameInitializer {
             }
             Country country = new Country();
             country.setName(countryData.getName());
-            country.setPolarization(countryData.getPolarization());
+            country.setMediaLiteracy(countryData.getPolarization());
             country.setTrustInState(countryData.getTrustInState());
             country.setEconomy(countryData.getEconomy());
             country.setGame(game);

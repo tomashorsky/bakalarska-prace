@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class CountryDTO {
     private Long id;
     private String name;
-    private float polarization;
+    private float mediaLiteracy;
     private float trustInState;
     private EconomicSituation economy;
     private Long gameId;

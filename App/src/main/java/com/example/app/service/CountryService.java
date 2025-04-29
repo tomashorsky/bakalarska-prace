@@ -28,7 +28,7 @@ public class CountryService {
         CountryDTO countryDTO = new CountryDTO();
         countryDTO.setId(country.getId());
         countryDTO.setName(country.getName());
-        countryDTO.setPolarization(country.getPolarization());
+        countryDTO.setMediaLiteracy(country.getMediaLiteracy());
         countryDTO.setTrustInState(country.getTrustInState());
         countryDTO.setEconomy(country.getEconomy());
         countryDTO.setGameId(country.getGame().getId());
