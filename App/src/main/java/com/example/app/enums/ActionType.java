@@ -8,15 +8,27 @@ import lombok.Getter;
 public enum ActionType {
     DISINFORMATION(
             "Dezinformace",
-            "Šíření zavádějících informací s cílem destabilizace."
+            " Úmyslné šíření nepravdivých informací s cílem ovlivnit názory, nebo rozhodnutí lidí."
     ),
-    DEEPFAKE(
-            "Deepfake",
-            "Použití manipulativního videa či hlasu ke klamání cílové skupiny."
+    MICRO_TARGETING(
+            "Mikrocílení (Microtargeting)",
+            "Využití AI k analýze dat uživatelů a zobrazení jim takového příspěvku, který u nich vyvolá" +
+                    " emoční reakci a má největší šanci je ovlivnit."
     ),
-    FAKE_NEWS(
-            "Fake news",
-            "Publikace falešných zpráv za účelem ovlivnění veřejnosti."
+    ASTROTURFING(
+            "Umělá podpora (Astroturfing)",
+            "Simulace spontánní veřejné podpory určitého postoje pomocí falešných příspěvků, komentářů či" +
+                    " organizací za účelem ovlivnění veřejného mínění."
+    ),
+    ECHO_CHAMBERS(
+            "Echo chambers",
+            "Uzavřené online prostředí, kde člověk vnímá převážně souhlasné názory, čímž se jeho postoje" +
+                    " utvrzují a mohou radikalizovat. (Například skupiny Facebooku, nebo Telegramu)"
+    ),
+    MALIFORMATIONS(
+            "Malinformace",
+            "Zveřejnění pravdivých, často zveličených informací ve strategickém čase s cílem někoho poškodit." +
+                    " (Například zveřejnění osobního skandálu před volbami)"
     );
 
     private final String name;
