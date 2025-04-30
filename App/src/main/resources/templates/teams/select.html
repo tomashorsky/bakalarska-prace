@@ -21,7 +21,7 @@
 
 <script>
     function selectTeam(teamId, gameId) {
-        localStorage.setItem("playerTeamId", teamId);
+        localStorage.setItem("teamId", teamId);
         localStorage.setItem("gameId", gameId);
         window.location.href = "/teams/" + teamId;
     }

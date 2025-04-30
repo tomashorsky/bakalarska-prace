@@ -30,7 +30,7 @@ public class TeamService {
         teamDTO.setId(team.getId());
         teamDTO.setName(team.getName());
         teamDTO.setColorHex(team.getColorHex());
-        teamDTO.setManipulation(team.getManipulation());
+        teamDTO.setOpinion(team.getOpinion());
         teamDTO.setGameId(team.getGame().getId());
         teamDTO.setNumberOfTools(team.getTools().size());
         return teamDTO;

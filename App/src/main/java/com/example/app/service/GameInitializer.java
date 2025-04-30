@@ -3,7 +3,7 @@ package com.example.app.service;
 
 import com.example.app.config.GameDefaultsProperties;
 import com.example.app.entity.Game;
-import com.example.app.entity.OpinionRate;
+import com.example.app.entity.OpinionSupporters;
 import com.example.app.entity.Team;
 import com.example.app.entity.Country;
 import com.example.app.repository.CountryRepository;
@@ -40,7 +40,7 @@ public class GameInitializer {
             }
             Country country = new Country();
             country.setName(countryData.getName());
-            country.setMediaLiteracy(countryData.getPolarization());
+            country.setMediaLiteracy(countryData.getMediaLiteracy());
             country.setTrustInState(countryData.getTrustInState());
             country.setEconomy(countryData.getEconomy());
             country.setGame(game);
@@ -63,7 +63,7 @@ public class GameInitializer {
             Team team = new Team();
             team.setName(teamData.getName());
             team.setColorHex(teamData.getColorHex());
-            team.setManipulation(teamData.getManipulation());
+            team.setOpinion(teamData.getOpinion());
             team.setGame(game);
             game.getTeams().add(team);
             teamRepository.save(team);
@@ -77,11 +77,11 @@ public class GameInitializer {
     private void initializeOpinionsRates(Game game) {
         for (Country country : game.getCountries()) {
             for (Team team : game.getTeams()) {
-                OpinionRate opinionRate = new OpinionRate();
-                opinionRate.setCountry(country);
-                opinionRate.setTeam(team);
-                opinionRate.setRate(0.0f);
-                opinionRateRepository.save(opinionRate);
+                OpinionSupporters opinionSupporters = new OpinionSupporters();
+                opinionSupporters.setCountry(country);
+                opinionSupporters.setTeam(team);
+                opinionSupporters.setNumberOf(0);
+                opinionRateRepository.save(opinionSupporters);
             }
         }
     }

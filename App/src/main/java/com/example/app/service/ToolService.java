@@ -28,7 +28,6 @@ public class ToolService {
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
         Tool tool = new Tool();
         tool.setType(ToolType.valueOf(toolType));
-        tool.setLevel(1);
         tool.setTeam(team);
         toolRepository.save(tool);
         return "Manipulační nástroj " + tool.getType().name() + " byl úspěšně přidán";
@@ -48,7 +47,6 @@ public class ToolService {
         return ToolDTO.builder()
                 .id(tool.getId())
                 .type(tool.getType())
-                .level(tool.getLevel())
                 .teamId(tool.getTeam().getId())
                 .canBeUsedAt(tool.getCanBeUsedAt())
                 .build();

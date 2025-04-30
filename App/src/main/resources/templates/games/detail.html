@@ -55,7 +55,7 @@
                   th:style="'background-color:' + ${team.colorHex} + '; width: 15px; height: 15px;'">
             </span>
         </td>
-        <td th:text="${team.manipulation}"></td>
+        <td th:text="${team.opinion}"></td>
         <td th:text="${team.numberOfTools}"></td>
     </tr>
     </tbody>
@@ -75,7 +75,7 @@
     <tbody>
     <tr th:each="country : ${countries}">
         <td th:text="${country.name}"></td>
-        <td th:text="${country.polarization}"></td>
+        <td th:text="${country.mediaLiteracy}"></td>
         <td th:text="${country.trustInState}"></td>
         <td th:text="${country.economy}"></td>
     </tr>

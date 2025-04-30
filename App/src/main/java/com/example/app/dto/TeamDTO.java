@@ -13,7 +13,7 @@ public class TeamDTO {
     private Long id;
     private String name;
     private String colorHex;
-    private String manipulation;
+    private String opinion;
     private Long gameId;
     private int NumberOfTools;
 }

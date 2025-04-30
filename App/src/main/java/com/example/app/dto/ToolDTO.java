@@ -15,7 +15,6 @@ import java.time.LocalDateTime;
 public class ToolDTO {
     private Long id;
     private ToolType type;
-    private int level;
     private Long teamId;
     private LocalDateTime canBeUsedAt;
 }

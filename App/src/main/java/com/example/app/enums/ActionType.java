@@ -7,28 +7,27 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ActionType {
     DISINFORMATION(
-            "Dezinformace",
-            " Úmyslné šíření nepravdivých informací s cílem ovlivnit názory, nebo rozhodnutí lidí."
+            "Rozšířit dezinformaci",
+            "Úmyslně rozšiř nepravdivou informaci s cílem ovlivnit názory a rozhodnutí lidí."
     ),
     MICRO_TARGETING(
-            "Mikrocílení (Microtargeting)",
-            "Využití AI k analýze dat uživatelů a zobrazení jim takového příspěvku, který u nich vyvolá" +
-                    " emoční reakci a má největší šanci je ovlivnit."
+            "Využít mikrocílení (Microtargeting)",
+            "Využijte AI k analýze dat uživatelů soc. sítí a zobrazujte jim takové příspěvky, které v nich" +
+                    " vyvolají emoční reakci a ovlivní jejich názor."
     ),
     ASTROTURFING(
-            "Umělá podpora (Astroturfing)",
-            "Simulace spontánní veřejné podpory určitého postoje pomocí falešných příspěvků, komentářů či" +
-                    " organizací za účelem ovlivnění veřejného mínění."
+            "Uměle podpořit názor (Astroturfing)",
+            "Simuluj spontální veřejnou podporu tvého názoru pomocí falešných příspěvků, reakcí, nebo dokonce svoláním demostrace" +
+                    " tvůj názor se tak bude zdát podporovanější než ve skutečnosti je."
     ),
     ECHO_CHAMBERS(
-            "Echo chambers",
-            "Uzavřené online prostředí, kde člověk vnímá převážně souhlasné názory, čímž se jeho postoje" +
-                    " utvrzují a mohou radikalizovat. (Například skupiny Facebooku, nebo Telegramu)"
+            "Vytvořit skupinu (Echo chambers)",
+            "Vytvoř uzavřené online prostředí (např. skupinu na Facebooku, nebo Telegramu), ve které podporuj v diskuzi, utvrzuj a radikalizuj své podporovatele."
     ),
     MALIFORMATIONS(
-            "Malinformace",
-            "Zveřejnění pravdivých, často zveličených informací ve strategickém čase s cílem někoho poškodit." +
-                    " (Například zveřejnění osobního skandálu před volbami)"
+            "Zveřejnit malinformaci",
+            "Najdi, zvelič a zveřejni pravdivou informaci, která poškodí nějakého výrazného odporovatele tvého názoru. " +
+                    "Napríklad zveřejni jeho soukromé zprávy, fotky, nebo třeba nějakou aféru."
     );
 
     private final String name;

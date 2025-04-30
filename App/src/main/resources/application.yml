@@ -1,42 +1,42 @@
 game-defaults:
   countries:
     - name: "Česká republika"
-      polarization: 0.3
+      media-literacy: 0.3
       trustInState: 0.7
       economy: GOOD
 
     - name: "Slovensko"
-      polarization: 0.4
+      media-literacy: 0.4
       trustInState: 0.6
       economy: BAD
 
     - name: "Polsko"
-      polarization: 0.4
+      media-literacy: 0.4
       trustInState: 0.6
       economy: AVERAGE
 
-    - name: "Maďarsko"
-      polarization: 0.4
+    - name: "Německo"
+      media-literacy: 0.4
       trustInState: 0.6
       economy: VERY_GOOD
 
   teams:
     - name: "Modrý tým"
       colorHex: "#0dcaf0"
-      manipulation: "Modrá manipulace"
+      opinion: "Modrá manipulace"
 
     - name: "Červený tým"
       colorHex: "#dc3545"
-      manipulation: "Rudá manipulace"
+      opinion: "Rudá manipulace"
 
     - name: "Zelený tým"
       colorHex: "#198754"
-      manipulation: "Velmi dlouhá a delší manipulace xxxxx"
+      opinion: "Velmi dlouhá a delší manipulace xxxxx aaaaaaaaaaa"
 
     - name: "Oranžový tým"
       colorHex: "#fd7e14"
-      manipulation: "Žlutá dezinformace"
+      opinion: "Žlutá dezinformace"
 
     - name: "Oranžový tým"
       colorHex: "#fd7e14"
-      manipulation: "Žlutá dezinformace"
+      opinion: "Žlutá dezinformace"

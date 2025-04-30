@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 public abstract class InfluenceOperation {
     private String name;
     private float impact;
-    private float polarizationImpact;
     private float trustInStateImpact;
     @CreationTimestamp
     private LocalDateTime usedAt;

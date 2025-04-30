@@ -20,7 +20,7 @@ public class GameDefaultsProperties {
     @Setter
     public static class CountryData {
         private String name;
-        private float polarization;
+        private float mediaLiteracy;
         private float trustInState;
         private EconomicSituation economy;
     }
@@ -30,6 +30,6 @@ public class GameDefaultsProperties {
     public static class TeamData {
         private String name;
         private String colorHex;
-        private String manipulation;
+        private String opinion;
     }
 }

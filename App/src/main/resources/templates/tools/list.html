@@ -23,7 +23,6 @@
              style="cursor: pointer;">
             <div class="card-body">
                 <h5 class="card-title" th:text="${tool.type}">Název nástroje</h5>
-                <p class="card-text">Úroveň: <span th:text="${tool.level}"></span></p>
                 <p class="card-text text-muted">
                     Dostupné za: <span class="countdown" th:id="'countdown-' + ${tool.id}"></span>
                 </p>
@@ -34,7 +33,7 @@
     <!-- Výběr země -->
     <h3 class="mt-5 mb-3">Zvol cílovou zemi:</h3>
     <div class="btn-group d-flex flex-wrap gap-2" role="group">
-        <div th:each="country, iter : ${countries}">
+        <div th:block th:each="country, iter : ${countries}">
             <input type="radio"
                    class="btn-check"
                    name="countryId"

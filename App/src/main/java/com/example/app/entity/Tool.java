@@ -24,8 +24,6 @@ public class Tool {
     @Enumerated(EnumType.STRING)
     private ToolType type;
 
-    private int level;
-
     private LocalDateTime canBeUsedAt;
 
     @ManyToOne

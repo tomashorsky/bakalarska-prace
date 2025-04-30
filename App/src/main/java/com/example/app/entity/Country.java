@@ -26,7 +26,7 @@ public class Country {
     private Game game;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OpinionRate> opinionRates = new ArrayList<>();
+    private List<OpinionSupporters> opinionSupporters = new ArrayList<>();
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Action> actions = new ArrayList<>();

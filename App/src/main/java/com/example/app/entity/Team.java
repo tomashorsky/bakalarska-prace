@@ -21,7 +21,7 @@ public class Team {
 
     private String name;
     private String colorHex;
-    private String manipulation;
+    private String opinion;
 
     @ManyToOne
     @JoinColumn(name = "game_id")
@@ -34,5 +34,5 @@ public class Team {
     private List<Tool> tools = new ArrayList<>();
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OpinionRate> opinionRates = new ArrayList<>();
+    private List<OpinionSupporters> opinionSupporters = new ArrayList<>();
 }
