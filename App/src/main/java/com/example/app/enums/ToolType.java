@@ -11,10 +11,10 @@ public enum ToolType {
             "Trolí farmy jsou skupiny lidí, kteří se snaží manipulovat veřejným míněním na internetu."
     ),
     DEEPFAKE_MAKER(
-            "AI nástroj na deepfakes",
+            "AI nástroj na deepfake videa",
             "AI nástroj pro vytváření falešných videí, obrázků, audiozánamů která mohou být použita k manipulaci."
     ),
-    //TODO delete or keep
+    //TODO delete?
     /*
     FAKE_EXPERTS(
             "Falešný expert",

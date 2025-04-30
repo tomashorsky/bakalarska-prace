@@ -1,7 +1,10 @@
 package com.example.app.controller;
 
+import com.example.app.dto.CountryDTO;
 import com.example.app.dto.TeamDTO;
 import com.example.app.dto.ToolDTO;
+import com.example.app.enums.ToolType;
+import com.example.app.service.CountryService;
 import com.example.app.service.TeamService;
 import com.example.app.service.ToolService;
 import org.springframework.ui.Model;
@@ -17,14 +20,17 @@ import java.util.List;
 public class ToolController {
     private final ToolService toolService;
     private final TeamService teamService;
+    private final CountryService countryService;
 
     @GetMapping("/teams/{teamId}/tools")
     public String getTools(Model model, @PathVariable Long teamId) {
         List<ToolDTO> tools = toolService.getToolsByTeamId(teamId);
         TeamDTO team = teamService.getTeam(teamId);
+        List<CountryDTO> countries = countryService.getAllCountriesFromGame(team.getGameId());
 
         model.addAttribute("tools", tools);
         model.addAttribute("team", team);
+        model.addAttribute("countries", countries);
         return "tools/list";
     }
 
@@ -43,7 +49,12 @@ public class ToolController {
 
     @GetMapping("/teams/{teamId}/tools/add")
     public String addTool(Model model, @PathVariable Long teamId) {
+        TeamDTO team = teamService.getTeam(teamId);
+        List<ToolType> unownedTools = toolService.getUnownedTools(teamId);
+
         model.addAttribute("tool", new ToolDTO());
+        model.addAttribute("team", team);
+        model.addAttribute("unownedTools", unownedTools);
         return "tools/add";
     }
 
@@ -56,7 +67,7 @@ public class ToolController {
         String message = toolService.addTool(teamId, toolType);
 
         redirectAttributes.addFlashAttribute("successMessage", message);
-        return "redirect:/teams/"+teamId+"/tools";
+        return "redirect:/teams/" + teamId;
     }
 
 

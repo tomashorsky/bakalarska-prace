@@ -7,12 +7,12 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class OpinionSupporters {
+public class OpinionSupport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int numberOf;
+    private int supportersCount;
 
     @ManyToOne
     @JoinColumn(name = "country_id")

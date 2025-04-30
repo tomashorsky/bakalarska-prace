@@ -17,7 +17,6 @@ public class ToolUsageDTO {
     private Long countryId;
 
     private float impact;
-    private float polarizationImpact;
     private float trustInStateImpact;
     private LocalDateTime usedAt;
 }

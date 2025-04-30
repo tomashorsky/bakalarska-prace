@@ -26,11 +26,18 @@ public class Country {
     private Game game;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OpinionSupporters> opinionSupporters = new ArrayList<>();
+    private List<OpinionSupport> opinionSupporters = new ArrayList<>();
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Action> actions = new ArrayList<>();
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ToolUsage> toolUsages = new ArrayList<>();
+
+    public OpinionSupport getOpinionSupportByTeamId(Long teamId) {
+        return opinionSupporters.stream()
+                .filter(opinionSupporter -> opinionSupporter.getTeam().getId().equals(teamId))
+                .findFirst()
+                .orElse(null);
+    }
 }

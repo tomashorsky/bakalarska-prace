@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="cs">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Přidat nástroj</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 </head>
-<body>
+<body class="container mt-5">
+
+<h1 class="text-center mb-5">Přidat nástroj </h1>
+
+<div th:if="${#lists.isEmpty(unownedTools)}" class="alert alert-info text-center">
+    <p class="mb-3">Tvůj tým vlastní všechny dostupné nástroje.</p>
+    <a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-primary btn">
+        Zpět na tým
+    </a>
+</div>
+
+
+<form th:if="${!#lists.isEmpty(unownedTools)}"
+      th:action="@{/teams/{teamId}/tools/add(teamId=${team.id})}" method="post">
+    <input type="hidden" name="toolType" id="selectedToolType" required/>
+
+    <!-- Tool selection -->
+    <h3 class="mb-3">Zvol typ nástroje:</h3>
+    <div class="mb-4">
+        <div class="card mb-3"
+             th:each="type : ${unownedTools}"
+             th:attr="data-tool-type=${type.name()}"
+             onclick="selectToolType(this)"
+             style="cursor: pointer;">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${type.name()}">Název nástroje</h5>
+                <p class="card-text" th:text="${type.getDescription()}">Popis nástroje</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back and Submit -->
+    <div class="row mt-5">
+        <div class="col text-start">
+            <a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-primary">Zpět na tým</a>
+        </div>
+        <div class="col text-end">
+            <button type="submit" class="btn btn-warning btn-lg"
+                    onclick="return confirm('Opravdu jsi splnil úkol pro získání nástroje?');">
+                ➕ Přidat nástroj
+            </button>
+        </div>
+    </div>
+</form>
+
+<script>
+    function selectToolType(card) {
+        document.querySelectorAll('.card').forEach(c => c.classList.remove('bg-warning'));
+        card.classList.add('bg-warning');
+        document.getElementById('selectedToolType').value = card.getAttribute('data-tool-type');
+    }
+</script>
 
 </body>
 </html>

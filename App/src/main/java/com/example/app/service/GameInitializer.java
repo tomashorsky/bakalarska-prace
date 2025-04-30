@@ -3,11 +3,11 @@ package com.example.app.service;
 
 import com.example.app.config.GameDefaultsProperties;
 import com.example.app.entity.Game;
-import com.example.app.entity.OpinionSupporters;
+import com.example.app.entity.OpinionSupport;
 import com.example.app.entity.Team;
 import com.example.app.entity.Country;
 import com.example.app.repository.CountryRepository;
-import com.example.app.repository.OpinionRateRepository;
+import com.example.app.repository.OpinionSupportRepository;
 import com.example.app.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class GameInitializer {
 
     private final CountryRepository countryRepository;
     private final TeamRepository teamRepository;
-    private final OpinionRateRepository opinionRateRepository;
+    private final OpinionSupportRepository opinionSupportRepository;
     private final GameDefaultsProperties gameDefaults;
 
 
@@ -77,11 +77,11 @@ public class GameInitializer {
     private void initializeOpinionsRates(Game game) {
         for (Country country : game.getCountries()) {
             for (Team team : game.getTeams()) {
-                OpinionSupporters opinionSupporters = new OpinionSupporters();
-                opinionSupporters.setCountry(country);
-                opinionSupporters.setTeam(team);
-                opinionSupporters.setNumberOf(0);
-                opinionRateRepository.save(opinionSupporters);
+                OpinionSupport opinionSupport = new OpinionSupport();
+                opinionSupport.setCountry(country);
+                opinionSupport.setTeam(team);
+                opinionSupport.setSupportersCount(0);
+                opinionSupportRepository.save(opinionSupport);
             }
         }
     }

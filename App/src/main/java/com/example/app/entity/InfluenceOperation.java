@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 public abstract class InfluenceOperation {
     private String name;
-    private float impact;
+    private int impact;
     private float trustInStateImpact;
     @CreationTimestamp
     private LocalDateTime usedAt;

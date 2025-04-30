@@ -34,5 +34,5 @@ public class Team {
     private List<Tool> tools = new ArrayList<>();
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OpinionSupporters> opinionSupporters = new ArrayList<>();
+    private List<OpinionSupport> opinionSupporters = new ArrayList<>();
 }

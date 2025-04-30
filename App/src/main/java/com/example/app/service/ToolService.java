@@ -8,9 +8,11 @@ import com.example.app.enums.ToolType;
 import com.example.app.repository.CountryRepository;
 import com.example.app.repository.TeamRepository;
 import com.example.app.repository.ToolRepository;
+import com.example.app.service.ExecutionResolvers.ToolResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +21,7 @@ public class ToolService {
     private final ToolRepository toolRepository;
     private final TeamRepository teamRepository;
     private final CountryRepository countryRepository;
+    private final ToolResolver toolResolver;
 
     public List<ToolDTO> getToolsByTeamId(Long teamId) {
         return toolRepository.findAllByTeamId(teamId).stream().map(this::toolToDTO).toList();
@@ -30,7 +33,7 @@ public class ToolService {
         tool.setType(ToolType.valueOf(toolType));
         tool.setTeam(team);
         toolRepository.save(tool);
-        return "Manipulační nástroj " + tool.getType().name() + " byl úspěšně přidán";
+        return "Manipulační nástroj <strong>" + tool.getType().getName() + "</strong> byl úspěšně přidán, nyní ho můžete začít používat.";
     }
 
     public String executeTool(Long teamId, Long toolId, Long countryId) {
@@ -38,9 +41,18 @@ public class ToolService {
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
         Country country = countryRepository.findById(countryId).orElseThrow(() -> new IllegalArgumentException("Country not found"));
 
-        int result = ToolResolver.resolveToolExecution(tool, team, country);
+        int result = toolResolver.resolveToolExecution(tool, team, country);
         return  "Použitím manipulační nástroje na stát " + country.getName() + " jste získali jste <strong>" + result +
                 "</strong>  tisíc nových zmanipulovaných.";
+    }
+
+    public List<ToolType> getUnownedTools(Long teamId) {
+        List<ToolType> ownedTools = toolRepository.findAllByTeamId(teamId).stream()
+                .map(Tool::getType)
+                .toList();
+        List<ToolType> allTools = new ArrayList<>(List.of(ToolType.values()));
+        allTools.removeAll(ownedTools);
+        return allTools;
     }
 
     private ToolDTO toolToDTO(Tool tool) {
