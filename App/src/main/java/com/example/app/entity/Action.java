@@ -14,7 +14,7 @@ public class Action extends InfluenceOperation {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    private ActionType actionType;
+    private ActionType type;
 
     @ManyToOne
     @JoinColumn(name = "team_id")

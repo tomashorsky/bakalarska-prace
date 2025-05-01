@@ -41,7 +41,7 @@ public class ToolService {
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
         Country country = countryRepository.findById(countryId).orElseThrow(() -> new IllegalArgumentException("Country not found"));
 
-        int result = toolResolver.resolveToolExecution(tool, team, country);
+        int result = toolResolver.resolveExecution(tool, team, country);
         return  "Použitím manipulační nástroje na stát " + country.getName() + " jste získali jste <strong>" + result +
                 "</strong>  tisíc nových zmanipulovaných.";
     }

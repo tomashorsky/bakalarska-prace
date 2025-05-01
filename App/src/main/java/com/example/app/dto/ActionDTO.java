@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class ActionDTO {
     private Long id;
-    private ActionType actionType;
+    private ActionType type;
     private Long teamId;
     private Long countryId;
 

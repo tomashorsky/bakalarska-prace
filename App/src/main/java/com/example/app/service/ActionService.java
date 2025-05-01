@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ActionService {
     private final TeamRepository teamRepository;
     private final CountryRepository countryRepository;
+    private final ActionResolver actionResolver;
 
     @Transactional
     public String executeAction(Long teamId, Long countryId, String actionType) {
@@ -24,8 +25,8 @@ public class ActionService {
         Country country = countryRepository.findById(countryId).orElseThrow(() -> new IllegalArgumentException("Country not found"));
 
         Action action = new Action();
-        action.setActionType(ActionType.valueOf(actionType));
-        int result = ActionResolver.resolveActionExecution(action, team, country);
+        action.setType(ActionType.valueOf(actionType));
+        int result = actionResolver.resolveExecution(action, team, country);
         return "Manipulační akcí na stát " + country.getName() + " jste získali jste <strong>" + result +
                 "</strong>  tisíc nových zmanipulovaných.";
     }

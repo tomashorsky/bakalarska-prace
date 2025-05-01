@@ -24,7 +24,7 @@ public enum ActionType {
             "Vytvořit skupinu (Echo chambers)",
             "Vytvoř uzavřené online prostředí (např. skupinu na Facebooku, nebo Telegramu), ve které podporuj v diskuzi, utvrzuj a radikalizuj své podporovatele."
     ),
-    MALIFORMATIONS(
+    MALINFORMATIONS(
             "Zveřejnit malinformaci",
             "Najdi, zvelič a zveřejni pravdivou informaci, která poškodí nějakého výrazného odporovatele tvého názoru. " +
                     "Napríklad zveřejni jeho soukromé zprávy, fotky, nebo třeba nějakou aféru."
