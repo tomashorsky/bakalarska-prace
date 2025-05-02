@@ -4,7 +4,6 @@ import com.example.app.entity.*;
 import com.example.app.repository.CountryRepository;
 import com.example.app.repository.OpinionSupportRepository;
 import com.example.app.repository.ToolUsageRepository;
-import lombok.experimental.SuperBuilder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -21,7 +20,7 @@ public class ToolResolver extends AbstractResolver<Tool, ToolUsage> {
 
     public int resolveExecution(Tool tool, Team team, Country country) {
         tool.setCanBeUsedAt(LocalDateTime.now().plusMinutes(COOLDOWN));
-        int impact = calculateImpact(tool, country);
+        int impact = calculateImpactByType(tool, country);
 
         ToolUsage toolUsage = new ToolUsage();
         toolUsage.setName(tool.getType().getName());
@@ -35,7 +34,7 @@ public class ToolResolver extends AbstractResolver<Tool, ToolUsage> {
         return toolUsage.getImpact();
     }
 
-    protected int calculateImpact(Tool tool, Country country) {
+    protected int calculateImpactByType(Tool tool, Country country) {
         return switch (tool.getType()) {
             case TROLL_FARM -> calculateTrollFarmImpact(country);
             case DEEPFAKE_MAKER -> calculateDeepfakeMakerImpact(country);

@@ -6,15 +6,19 @@ import com.example.app.repository.OpinionSupportRepository;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public abstract class AbstractResolver<R ,T extends InfluenceOperation> {
+public abstract class AbstractResolver<R, T extends InfluenceOperation> {
+    private static final int BASE_IMPACT = 10;
+    private static final int BONUS_IMPACT_DIVIDER = 9;
+
     protected final CountryRepository countryRepository;
     protected final OpinionSupportRepository opinionSupportRepository;
 
     public abstract int resolveExecution(R operation, Team team, Country country);
-    protected abstract int calculateImpact(R operation, Country country);
+
+    protected abstract int calculateImpactByType(R operation, Country country);
 
     protected void recordImpact(Country country, T operation, Team team) {
-        OpinionSupport support =  country.getOpinionSupportByTeamId(team.getId());
+        OpinionSupport support = country.getOpinionSupportByTeamId(team.getId());
 
         support.setSupportersCount(support.getSupportersCount() + operation.getImpact());
         opinionSupportRepository.save(support);
@@ -25,7 +29,14 @@ public abstract class AbstractResolver<R ,T extends InfluenceOperation> {
 
     protected float calculateTrustInStateImpact(T operation, Country country) {
         //TODO: implement calculation based on country trustInState
-       return operation.getImpact() / 100f;
+        return operation.getImpact() / 100f;
+    }
+
+    protected int calculateImpact(float statValue) {
+        if (statValue <= 0) {
+            return BASE_IMPACT;
+        }
+        return BASE_IMPACT + Math.round(statValue / BONUS_IMPACT_DIVIDER);
     }
 
 }

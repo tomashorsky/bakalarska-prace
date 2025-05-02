@@ -27,7 +27,7 @@ public class ActionService {
         Action action = new Action();
         action.setType(ActionType.valueOf(actionType));
         int result = actionResolver.resolveExecution(action, team, country);
-        return "Manipulační akcí na stát " + country.getName() + " jste získali jste <strong>" + result +
+        return "Manipulační akcí na stát " + country.getName() + " jste získali <strong>" + result +
                 "</strong>  tisíc nových zmanipulovaných.";
     }
 }

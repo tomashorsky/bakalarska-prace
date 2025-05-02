@@ -17,7 +17,7 @@ public class ActionResolver extends AbstractResolver<Action, Action> {
 
     @Override
     public int resolveExecution(Action action, Team team, Country country) {
-        int impact = calculateImpact(action, country);
+        int impact = calculateImpactByType(action, country);
 
         action.setName(action.getType().getName());
         action.setTeam(team);
@@ -26,10 +26,11 @@ public class ActionResolver extends AbstractResolver<Action, Action> {
         action.setTrustInStateImpact(calculateTrustInStateImpact(action, country));
         actionRepository.save(action);
 
+        recordImpact(country, action, team);
        return impact;
     }
 
-    protected int calculateImpact(Action action, Country country) {
+    protected int calculateImpactByType(Action action, Country country) {
         return switch (action.getType()) {
             case DISINFORMATION -> calculateDisinformationImpact(country);
             case MICRO_TARGETING -> calculateMicroTargetingImpact(country);
