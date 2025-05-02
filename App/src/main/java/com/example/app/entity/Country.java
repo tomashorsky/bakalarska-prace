@@ -1,6 +1,6 @@
 package com.example.app.entity;
 
-import com.example.app.enums.EconomicSituation;
+import com.example.app.enums.SituationLevel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,9 +17,9 @@ public class Country {
     private Long id;
 
     private String name;
-    private float mediaLiteracy;
+    private SituationLevel mediaLiteracy;
     private float trustInState;
-    private EconomicSituation economy;
+    private SituationLevel economy;
 
     @ManyToOne
     @JoinColumn(name = "game_id")

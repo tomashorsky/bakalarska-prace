@@ -8,10 +8,11 @@ import lombok.Getter;
 public enum ToolType {
     TROLL_FARM(
             "Trollí farma",
-            "Trolí farmy jsou skupiny lidí, kteří se snaží manipulovat veřejným míněním na internetu."
+            "Firma která zaměstnává desítky lidí, kteří ovládají tisíce falešných účtů na sociálních " +
+                    "sítích, prostřednictvým kterých píše provokatvní komentáře a šíří dezinformace. "
     ),
     DEEPFAKE_MAKER(
-            "AI nástroj na deepfake videa",
+            "AI nástroj na deepfakes",
             "AI nástroj pro vytváření falešných videí, obrázků, audiozánamů která mohou být použita k manipulaci."
     ),
     //TODO delete?

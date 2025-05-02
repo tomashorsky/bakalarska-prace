@@ -1,33 +1,33 @@
 game-defaults:
   countries:
     - name: "Česká republika"
-      media-literacy: 0.3
-      trustInState: 0.7
+      media-literacy: VERY_BAD
+      trustInState: 63.0
       economy: GOOD
 
     - name: "Slovensko"
-      media-literacy: 0.4
-      trustInState: 0.6
+      media-literacy: AVERAGE
+      trustInState: 37.0
       economy: BAD
 
     - name: "Polsko"
-      media-literacy: 0.4
-      trustInState: 0.6
+      media-literacy: GOOD
+      trustInState: 57.0
       economy: AVERAGE
 
     - name: "Německo"
-      media-literacy: 0.4
-      trustInState: 0.6
+      media-literacy: BAD
+      trustInState: 71.0
       economy: VERY_GOOD
 
   teams:
     - name: "Modrý tým"
       colorHex: "#0dcaf0"
-      opinion: "Modrá manipulace"
+      opinion: "Evropa by měla přestat podporovat Ukrajinu"
 
     - name: "Červený tým"
       colorHex: "#dc3545"
-      opinion: "Rudá manipulace"
+      opinion: "Evropa by "
 
     - name: "Zelený tým"
       colorHex: "#198754"

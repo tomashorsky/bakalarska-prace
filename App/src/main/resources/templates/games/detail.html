@@ -75,9 +75,9 @@
     <tbody>
     <tr th:each="country : ${countries}">
         <td th:text="${country.name}"></td>
-        <td th:text="${country.mediaLiteracy}"></td>
-        <td th:text="${country.trustInState}"></td>
-        <td th:text="${country.economy}"></td>
+        <td th:text="${country.mediaLiteracy.name()}"></td>
+        <td th:text="${country.trustInState} + ' %'" ></td>
+        <td th:text="${country.economy.name()}"></td>
     </tr>
     </tbody>
 </table>

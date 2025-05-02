@@ -1,6 +1,6 @@
 package com.example.app.dto;
 
-import com.example.app.enums.EconomicSituation;
+import com.example.app.enums.SituationLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 public class CountryDTO {
     private Long id;
     private String name;
-    private float mediaLiteracy;
+    private SituationLevel mediaLiteracy;
     private float trustInState;
-    private EconomicSituation economy;
+    private SituationLevel economy;
     private Long gameId;
 }
