@@ -12,6 +12,5 @@ import lombok.NoArgsConstructor;
 public class OpinionSupportDTO {
     private Long id;
     private int supportersCount;
-    private Long countryId;
-    private Long teamId;
+    private String opinion;
 }

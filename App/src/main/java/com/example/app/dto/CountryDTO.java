@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -17,4 +19,5 @@ public class CountryDTO {
     private float trustInState;
     private SituationLevel economy;
     private Long gameId;
+    private List<OpinionSupportDTO> opinionSupports = null; // Optional
 }

@@ -28,7 +28,7 @@
              onclick="selectTool(this)"
              style="cursor: pointer;">
             <div class="card-body">
-                <h5 class="card-title" th:text="${tool.type}">Název nástroje</h5>
+                <h5 class="card-title" th:text="${tool.type.getName()}">Název nástroje</h5>
                 <p class="card-text text-muted">
                     Dostupné za: <span class="countdown" th:id="'countdown-' + ${tool.id}"></span>
                 </p>

@@ -15,16 +15,16 @@ public enum ToolType {
             "AI nástroj na deepfakes",
             "AI nástroj pro vytváření falešných videí, obrázků, audiozánamů která mohou být použita k manipulaci."
     ),
+    FAKE_NEWS_SITE(
+            "Falešný zpravodajský web",
+            "Web vydávající se za důvěryhodné médium, který šíří zmanipulované nebo nepravdivé zprávy."
+    ),
     //TODO delete?
     /*
     FAKE_EXPERTS(
             "Falešný expert",
             "Člověk, který se pasuje do role odborníka nebo vědce, aby dodal důvěryhodnost názoru."
-    ),*/
-    FAKE_NEWS_SITE(
-            "Falešný zpravodajský web",
-            "Web vydávající se za důvěryhodné médium, který šíří zmanipulované nebo nepravdivé zprávy."
-    );
+    ),*/;
 
     private final String name;
 

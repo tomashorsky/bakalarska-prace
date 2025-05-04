@@ -1,7 +1,9 @@
 package com.example.app.controller;
 
 import com.example.app.dto.CountryDTO;
+import com.example.app.dto.TeamDTO;
 import com.example.app.service.CountryService;
+import com.example.app.service.TeamService;
 import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,11 +15,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CountryController {
     private final CountryService countryService;
+    private final TeamService teamService;
 
-    @GetMapping("games/{gameId}/countries")
-    public String getCountries(@PathVariable Long gameId, Model model) {
-        List<CountryDTO> countries = countryService.getAllCountriesFromGame(gameId);
+    @GetMapping("/teams/{teamId}/countries")
+    public String getCountries(@PathVariable Long teamId, Model model) {
+        TeamDTO team = teamService.getTeam(teamId);
+        List<CountryDTO> countries = countryService.getAllCountriesDetailFromGame(team.getGameId());
+
         model.addAttribute("countries", countries);
+        model.addAttribute("team", team);
         return "countries/list";
     }
 }

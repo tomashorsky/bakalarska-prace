@@ -22,7 +22,6 @@ public class TeamController {
         GameDTO game = gameService.getGame(gameId);
         List<TeamDTO> teams = teamService.getAllTeamsFromGame(gameId);
 
-
         model.addAttribute("game", game);
         model.addAttribute("teams", teams);
         return "teams/select";

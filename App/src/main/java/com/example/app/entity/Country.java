@@ -26,7 +26,7 @@ public class Country {
     private Game game;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OpinionSupport> opinionSupporters = new ArrayList<>();
+    private List<OpinionSupport> opinionSupports = new ArrayList<>();
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Action> actions = new ArrayList<>();
@@ -35,7 +35,7 @@ public class Country {
     private List<ToolUsage> toolUsages = new ArrayList<>();
 
     public OpinionSupport getOpinionSupportByTeamId(Long teamId) {
-        return opinionSupporters.stream()
+        return opinionSupports.stream()
                 .filter(opinionSupporter -> opinionSupporter.getTeam().getId().equals(teamId))
                 .findFirst()
                 .orElse(null);

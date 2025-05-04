@@ -38,7 +38,7 @@
 <div class="mb-4">
     <h3>Státy</h3>
     <p>Zobraz aktuální stav a vliv týmu v jednotlivých zemích.</p>
-    <a th:href="@{games/{id}/cauntries/list(id=${team.getGameId()})}" class="btn btn-lg btn-success">Zobrazit státy 🗺️</a>
+    <a th:href="@{/teams/{teamId}/countries(teamId=${team.id})}"  class="btn btn-lg btn-success">Zobrazit státy 🗺️</a>
 </div>
 
 </body>
