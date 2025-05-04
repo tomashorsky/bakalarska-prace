@@ -33,11 +33,4 @@ public class Country {
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ToolUsage> toolUsages = new ArrayList<>();
-
-    public OpinionSupport getOpinionSupportByTeamId(Long teamId) {
-        return opinionSupports.stream()
-                .filter(opinionSupporter -> opinionSupporter.getTeam().getId().equals(teamId))
-                .findFirst()
-                .orElse(null);
-    }
 }

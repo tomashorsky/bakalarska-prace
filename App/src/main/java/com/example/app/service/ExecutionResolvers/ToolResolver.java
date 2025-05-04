@@ -20,40 +20,29 @@ public class ToolResolver extends AbstractResolver<Tool, ToolUsage> {
 
     public int resolveExecution(Tool tool, Team team, Country country) {
         tool.setCanBeUsedAt(LocalDateTime.now().plusMinutes(COOLDOWN));
-        int impact = calculateImpactByType(tool, country);
+        int impact = calculateImpactByType(tool, team, country);
 
         ToolUsage toolUsage = new ToolUsage();
         toolUsage.setName(tool.getType().getName());
         toolUsage.setImpact(impact);
         toolUsage.setTool(tool);
         toolUsage.setCountry(country);
-        toolUsage.setTrustInStateImpact(calculateTrustInStateImpact(toolUsage, country));
+        toolUsage.setTrustInStateImpact(calculateTrustInStateImpact(country));
         toolUsageRepository.save(toolUsage);
 
         recordImpact(country, toolUsage, team);
         return toolUsage.getImpact();
     }
 
-    protected int calculateImpactByType(Tool tool, Country country) {
+    protected int calculateImpactByType(Tool tool, Team team, Country country) {
+        int mediaLiteracy = country.getMediaLiteracy().getValue();
+        int trustInState = getNormalizedTrustInState(country);
+        int opinionSupport = getNormalizedOpinionSupporters(country, team);
+
         return switch (tool.getType()) {
-            case TROLL_FARM -> calculateTrollFarmImpact(country);
-            case DEEPFAKE_MAKER -> calculateDeepfakeMakerImpact(country);
-            case FAKE_NEWS_SITE -> calculateFakeNewsSiteImpact(country);
+            case TROLL_FARM -> calculateImpact(opinionSupport);
+            case DEEPFAKE_MAKER -> calculateImpactNegative(trustInState);
+            case FAKE_NEWS_SITE -> calculateImpact(mediaLiteracy);
         };
     }
-
-
-    private int calculateTrollFarmImpact(Country country) {
-        return 1;
-    }
-
-    private int calculateDeepfakeMakerImpact(Country country) {
-        return 2;
-    }
-
-    private int calculateFakeNewsSiteImpact(Country country) {
-        return 3;
-    }
-
-
 }

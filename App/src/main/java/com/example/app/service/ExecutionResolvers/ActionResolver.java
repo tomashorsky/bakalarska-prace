@@ -17,46 +17,31 @@ public class ActionResolver extends AbstractResolver<Action, Action> {
 
     @Override
     public int resolveExecution(Action action, Team team, Country country) {
-        int impact = calculateImpactByType(action, country);
+        int impact = calculateImpactByType(action, team, country);
 
         action.setName(action.getType().getName());
         action.setTeam(team);
         action.setCountry(country);
         action.setImpact(impact);
-        action.setTrustInStateImpact(calculateTrustInStateImpact(action, country));
+        action.setTrustInStateImpact(calculateTrustInStateImpact(country));
         actionRepository.save(action);
 
         recordImpact(country, action, team);
        return impact;
     }
 
-    protected int calculateImpactByType(Action action, Country country) {
+    protected int calculateImpactByType(Action action, Team team, Country country) {
+        int economy = country.getEconomy().getValue();
+        int mediaLiteracy = country.getMediaLiteracy().getValue();
+        int trustInState = getNormalizedTrustInState(country);
+        int opinionSupport = getNormalizedOpinionSupporters(country, team);
+
         return switch (action.getType()) {
-            case DISINFORMATION -> calculateDisinformationImpact(country);
-            case MICRO_TARGETING -> calculateMicroTargetingImpact(country);
-            case ASTROTURFING -> calculateAstroturfingImpact(country);
-            case ECHO_CHAMBERS -> calculateEchoChambersImpact(country);
-            case MALINFORMATIONS -> calculateMalinformationsImpact(country);
+            case DISINFORMATION -> calculateImpact(economy);
+            case MICRO_TARGETING -> calculateImpactNegative(mediaLiteracy);
+            case ASTROTURFING -> calculateImpactNegative(opinionSupport);
+            case ECHO_CHAMBERS -> calculateImpactNegative(economy);
+            case MALINFORMATIONS -> calculateImpact(trustInState);
         };
-    }
-
-    private int calculateDisinformationImpact(Country country) {
-        return 1;
-    }
-
-    private int calculateMicroTargetingImpact(Country country) {
-        return 2;
-    }
-
-    private int calculateAstroturfingImpact(Country country) {
-        return 3;
-    }
-
-    private int calculateEchoChambersImpact(Country country) {
-        return 4;
-    }
-
-    private int calculateMalinformationsImpact(Country country) {
-        return 5;
     }
 }

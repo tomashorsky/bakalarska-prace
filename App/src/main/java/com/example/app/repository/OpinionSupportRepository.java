@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OpinionSupportRepository extends JpaRepository<OpinionSupport, Long> {
+
+    OpinionSupport findByCountryIdAndTeamId(Long countryId, Long teamId);
 }
