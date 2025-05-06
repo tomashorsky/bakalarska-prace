@@ -79,11 +79,12 @@
             });
             data.addRows(rows);
 
-            var options = {
+            const options = {
                 title: 'Počet ovlivněných občanů v tisících',
                 legend: {position: 'none'},
                 chartArea: { width: '70%', height: '70%' }, //TODO: set to look good on phone
-                tooltip: { isHtml: true }
+                tooltip: { isHtml: true },
+                vAxis: {minValue: 10, format: '0'}
             };
 
             const chart = new google.visualization.ColumnChart(container);

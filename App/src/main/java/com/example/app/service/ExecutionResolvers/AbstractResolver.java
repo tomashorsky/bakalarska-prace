@@ -10,7 +10,7 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
     private static final int BASE_IMPACT = 10;
     private static final int BONUS_IMPACT_DIVIDER = 9;
     private static final int MAX_TRUST_IN_STATE = 71;
-    private static final float TRUST_IN_STATE_IMPACT_DIVIDER = 0.98f;
+    private static final float TRUST_IN_STATE_IMPACT_PERCENT = 0.15f;
 
     protected final CountryRepository countryRepository;
     protected final OpinionSupportRepository opinionSupportRepository;
@@ -30,9 +30,8 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
     }
 
     protected float calculateTrustInStateImpact(Country country) {
-        return country.getTrustInState() * TRUST_IN_STATE_IMPACT_DIVIDER;
+        return country.getTrustInState() * TRUST_IN_STATE_IMPACT_PERCENT;
     }
-
 
     protected int calculateImpactNegative(int statValue) {
         return calculateImpact(100 - statValue);

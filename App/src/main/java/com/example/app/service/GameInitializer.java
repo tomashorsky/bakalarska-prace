@@ -80,7 +80,7 @@ public class GameInitializer {
                 OpinionSupport opinionSupport = new OpinionSupport();
                 opinionSupport.setCountry(country);
                 opinionSupport.setTeam(team);
-                opinionSupport.setSupportersCount(0);
+                opinionSupport.setSupportersCount(1);
                 opinionSupportRepository.save(opinionSupport);
             }
         }
