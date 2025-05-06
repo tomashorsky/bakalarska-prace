@@ -61,6 +61,8 @@ public class CountryService {
         opinionSupportDTO.setId(opinionSupport.getId());
         opinionSupportDTO.setSupportersCount(opinionSupport.getSupportersCount());
         opinionSupportDTO.setOpinion(opinionSupport.getTeam().getOpinion());
+        opinionSupportDTO.setTeamName(opinionSupport.getTeam().getName());
+        opinionSupportDTO.setTeamColor(opinionSupport.getTeam().getColorHex());
         return opinionSupportDTO;
     }
 

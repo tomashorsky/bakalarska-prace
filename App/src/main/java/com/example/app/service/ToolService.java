@@ -33,7 +33,7 @@ public class ToolService {
         tool.setType(ToolType.valueOf(toolType));
         tool.setTeam(team);
         toolRepository.save(tool);
-        return "Manipulační nástroj <strong>" + tool.getType().getName() + "</strong> byl úspěšně přidán, nyní ho můžete začít používat.";
+        return "Manipulační nástroj <strong>" + tool.getType().getLabel() + "</strong> byl úspěšně přidán, nyní ho můžete začít používat.";
     }
 
     public String executeTool(Long teamId, Long toolId, Long countryId) {

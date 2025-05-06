@@ -61,7 +61,7 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
     protected int getNormalizedTrustInState(Country country) {
         float trustInState = country.getTrustInState();
         float constant = 100f / MAX_TRUST_IN_STATE;
-        return Math.round(trustInState / constant);
+        return Math.round(trustInState * constant);
     }
 
 }

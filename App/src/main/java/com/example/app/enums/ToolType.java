@@ -26,7 +26,7 @@ public enum ToolType {
             "Člověk, který se pasuje do role odborníka nebo vědce, aby dodal důvěryhodnost názoru."
     ),*/;
 
-    private final String name;
+    private final String label;
 
     private final String description;
 }

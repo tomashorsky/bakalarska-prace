@@ -31,7 +31,7 @@ public enum ActionType {
                     "Napríklad zveřejni jeho soukromé zprávy, fotky, nebo nějakou aféru."
     );
 
-    private final String name;
+    private final String label;
 
     private final String description;
 

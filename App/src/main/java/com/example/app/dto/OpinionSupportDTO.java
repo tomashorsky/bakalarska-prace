@@ -13,4 +13,6 @@ public class OpinionSupportDTO {
     private Long id;
     private int supportersCount;
     private String opinion;
+    private String teamName;
+    private String teamColor;
 }

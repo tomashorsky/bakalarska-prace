@@ -23,7 +23,7 @@ public class ToolResolver extends AbstractResolver<Tool, ToolUsage> {
         int impact = calculateImpactByType(tool, team, country);
 
         ToolUsage toolUsage = new ToolUsage();
-        toolUsage.setName(tool.getType().getName());
+        toolUsage.setName(tool.getType().getLabel());
         toolUsage.setImpact(impact);
         toolUsage.setTool(tool);
         toolUsage.setCountry(country);

@@ -7,7 +7,7 @@
 </head>
 <body class="container mt-5">
 
-<h1 class="text-center mb-5" th:text="${team.name}">Tým XYZ</h1>
+<h1 class="text-center mb-5" th:text="${team.name}">Tým</h1>
 
 
 <form th:action="@{/teams/{id}/actions/execute(id=${team.id})}" method="post">
@@ -23,8 +23,8 @@
              onclick="selectAction(this)"
              style="cursor: pointer;">
             <div class="card-body">
-                <h5 class="card-title" th:text="${type.getName()}">Název akce</h5>
-                <p class="card-text" th:text="${type.getDescription()}">Popisek</p>
+                <h5 class="card-title" th:text="${type.label}">Nástroj</h5>
+                <p class="card-text" th:text="${type.getDescription()}">Popis</p>
             </div>
         </div>
     </div>

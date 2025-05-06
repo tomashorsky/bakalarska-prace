@@ -19,7 +19,7 @@ public class ActionResolver extends AbstractResolver<Action, Action> {
     public int resolveExecution(Action action, Team team, Country country) {
         int impact = calculateImpactByType(action, team, country);
 
-        action.setName(action.getType().getName());
+        action.setName(action.getType().getLabel());
         action.setTeam(team);
         action.setCountry(country);
         action.setImpact(impact);
