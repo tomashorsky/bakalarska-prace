@@ -30,6 +30,11 @@ public class GameService {
         return gameToDTO(game);
     }
 
+    public boolean isGameInProgress(Long id) {
+        Game game = gameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Game not found"));
+        return game.getPhase() == GamePhase.IN_PROGRESS;
+    }
+
     /**
      * Create a new game with the specified number of teams and countries.
      *

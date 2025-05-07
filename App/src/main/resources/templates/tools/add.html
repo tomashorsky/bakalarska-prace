@@ -43,6 +43,7 @@
         </div>
         <div class="col text-end">
             <button type="submit" class="btn btn-warning btn-lg"
+                    th:disabled="${!gameInProgress}"
                     onclick="return confirm('Opravdu jsi splnil úkol pro získání nástroje?');">
                 ➕ Přidat nástroj
             </button>

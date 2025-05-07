@@ -54,7 +54,7 @@
             <a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-primary">Zpět na tým</a>
         </div>
         <div class="col text-end">
-            <button type="submit" class="btn btn-danger btn-lg">🚀 Provést akci</button>
+            <button type="submit" class="btn btn-danger btn-lg" th:disabled="${!gameInProgress}">Provést akci 🚀</button>
         </div>
     </div>
 </form>

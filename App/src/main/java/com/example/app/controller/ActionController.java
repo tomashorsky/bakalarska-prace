@@ -5,6 +5,7 @@ import com.example.app.dto.TeamDTO;
 import com.example.app.enums.ActionType;
 import com.example.app.service.ActionService;
 import com.example.app.service.CountryService;
+import com.example.app.service.GameService;
 import com.example.app.service.TeamService;
 import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
@@ -21,16 +22,19 @@ public class ActionController {
     private final ActionService actionService;
     private final TeamService teamService;
     private final CountryService countryService;
+    private final GameService gameService;
 
 
     @GetMapping("/teams/{teamId}/actions")
     public String getActions(@PathVariable Long teamId, Model model) {
         TeamDTO team = teamService.getTeam(teamId);
         List<CountryDTO> countries = countryService.getAllCountriesFromGame(team.getGameId());
+        Boolean gameInProgress = gameService.isGameInProgress(team.getGameId());
 
         model.addAttribute("actionTypes", ActionType.values());
         model.addAttribute("team", team);
         model.addAttribute("countries", countries);
+        model.addAttribute("gameInProgress", gameInProgress);
         return "actions/execute";
     }
 

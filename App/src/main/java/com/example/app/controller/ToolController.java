@@ -5,6 +5,7 @@ import com.example.app.dto.TeamDTO;
 import com.example.app.dto.ToolDTO;
 import com.example.app.enums.ToolType;
 import com.example.app.service.CountryService;
+import com.example.app.service.GameService;
 import com.example.app.service.TeamService;
 import com.example.app.service.ToolService;
 import org.springframework.ui.Model;
@@ -21,16 +22,19 @@ public class ToolController {
     private final ToolService toolService;
     private final TeamService teamService;
     private final CountryService countryService;
+    private final GameService gameService;
 
     @GetMapping("/teams/{teamId}/tools")
     public String getTools(Model model, @PathVariable Long teamId) {
         List<ToolDTO> tools = toolService.getToolsByTeamId(teamId);
         TeamDTO team = teamService.getTeam(teamId);
         List<CountryDTO> countries = countryService.getAllCountriesFromGame(team.getGameId());
+        Boolean gameInProgress = gameService.isGameInProgress(team.getGameId());
 
         model.addAttribute("tools", tools);
         model.addAttribute("team", team);
         model.addAttribute("countries", countries);
+        model.addAttribute("gameInProgress", gameInProgress);
         return "tools/list";
     }
 
@@ -51,10 +55,12 @@ public class ToolController {
     public String addTool(Model model, @PathVariable Long teamId) {
         TeamDTO team = teamService.getTeam(teamId);
         List<ToolType> unownedTools = toolService.getUnownedTools(teamId);
+        boolean gameInProgress = gameService.isGameInProgress(team.getGameId());
 
         model.addAttribute("tool", new ToolDTO());
         model.addAttribute("team", team);
         model.addAttribute("unownedTools", unownedTools);
+        model.addAttribute("gameInProgress", gameInProgress);
         return "tools/add";
     }
 
