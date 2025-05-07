@@ -17,18 +17,12 @@ public class CountryService {
 
     // get all game countries
     public List<CountryDTO> getAllCountriesFromGame(Long gameId) {
-        return countryRepository.findAllByGameId(gameId).stream().map(this::countryToDTO).toList();
+        return countryRepository.findAllByGameIdOrderByName(gameId).stream().map(this::countryToDTO).toList();
     }
 
     // get all game countries
     public List<CountryDTO> getAllCountriesDetailFromGame(Long gameId) {
-        return countryRepository.findAllByGameId(gameId).stream().map(this::countryDetailToDTO).toList();
-    }
-
-    // get country by id
-    public CountryDTO getCountry(Long id) {
-        Country country = countryRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Country not found"));
-        return countryToDTO(country);
+        return countryRepository.findAllByGameIdOrderByName(gameId).stream().map(this::countryDetailToDTO).toList();
     }
 
     // get country by id without opinion support

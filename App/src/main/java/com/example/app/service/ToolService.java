@@ -24,7 +24,7 @@ public class ToolService {
     private final ToolResolver toolResolver;
 
     public List<ToolDTO> getToolsByTeamId(Long teamId) {
-        return toolRepository.findAllByTeamId(teamId).stream().map(this::toolToDTO).toList();
+        return toolRepository.findAllByTeamIdOrderByType(teamId).stream().map(this::toolToDTO).toList();
     }
 
     public String addTool(Long teamId, String toolType) {
@@ -47,7 +47,7 @@ public class ToolService {
     }
 
     public List<ToolType> getUnownedTools(Long teamId) {
-        List<ToolType> ownedTools = toolRepository.findAllByTeamId(teamId).stream()
+        List<ToolType> ownedTools = toolRepository.findAllByTeamIdOrderByType(teamId).stream()
                 .map(Tool::getType)
                 .toList();
         List<ToolType> allTools = new ArrayList<>(List.of(ToolType.values()));

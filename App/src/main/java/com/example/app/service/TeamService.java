@@ -15,7 +15,7 @@ public class TeamService {
 
     // get all game teams
     public List<TeamDTO> getAllTeamsFromGame(Long gameId) {
-        return teamRepository.findAllByGameId(gameId).stream().map(this::teamToDTO).toList();
+        return teamRepository.findAllByGameIdOrderById(gameId).stream().map(this::teamToDTO).toList();
     }
 
     // get team by id

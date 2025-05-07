@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface CountryRepository extends JpaRepository<Country, Long> {
 
-    List<Country> findAllByGameId(Long gameId);
+    List<Country> findAllByGameIdOrderByName(Long gameId);
 }
