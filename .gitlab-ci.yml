@@ -15,8 +15,3 @@ Run tests:
     script:
         - cd App
         - mvn clean test -Dgroups=!db
-    artifacts:
-      when: always
-      paths:
-        - App/target/surefire-reports/
-      expire_in: 1 day
