@@ -3,6 +3,8 @@ package com.example.app.enums;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 @Getter
 @AllArgsConstructor
 public enum SituationLevel {
@@ -15,4 +17,9 @@ public enum SituationLevel {
     private final String name;
     private final int value;
 
+    public static SituationLevel getRandom() {
+        SituationLevel[] values = values();
+        int index = ThreadLocalRandom.current().nextInt(values.length);
+        return values[index];
+    }
 }
