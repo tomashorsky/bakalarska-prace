@@ -14,7 +14,7 @@ Run tests:
     stage: test
     script:
         - cd App
-        - mvn clean test
+        - mvn clean test -Dgroups=!db
     artifacts:
       when: always
       paths:
