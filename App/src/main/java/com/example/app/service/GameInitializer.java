@@ -21,11 +21,14 @@ public class GameInitializer {
     private final OpinionSupportRepository opinionSupportRepository;
     private final GameDefaultsProperties gameDefaults;
 
-
+    /**
+     * Initializes the game with countries, teams, and opinion support.
+     * @param game The game instance to initialize.
+     */
     public void initializeGame(Game game) {
         initializeCountries(game);
         initializeTeams(game);
-        initializeOpinionsRates(game);
+        initializeOpinionsSupport(game);
     }
 
     /**
@@ -38,6 +41,7 @@ public class GameInitializer {
             if(i >= game.getNumberOfCountries()) {
                 break;
             }
+            i++;
             Country country = new Country();
             country.setName(countryData.getName());
             country.setMediaLiteracy(countryData.getMediaLiteracy());
@@ -71,10 +75,10 @@ public class GameInitializer {
     }
 
     /**
-     * Initializes the opinion rates for each country and team.
+     * Initializes the opinion support for each country and team.
      * @param game The game instance to initialize opinion rates for.
      */
-    private void initializeOpinionsRates(Game game) {
+    private void initializeOpinionsSupport(Game game) {
         for (Country country : game.getCountries()) {
             for (Team team : game.getTeams()) {
                 OpinionSupport opinionSupport = new OpinionSupport();
