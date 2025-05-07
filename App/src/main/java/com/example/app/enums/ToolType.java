@@ -19,7 +19,6 @@ public enum ToolType {
             "Falešný zpravodajský web",
             "Web vydávající se za důvěryhodné médium, který šíří zmanipulované nebo nepravdivé zprávy."
     ),
-    //TODO delete?
     /*
     FAKE_EXPERTS(
             "Falešný expert",

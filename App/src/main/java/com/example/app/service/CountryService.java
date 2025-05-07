@@ -35,7 +35,6 @@ public class CountryService {
         return countryToDTO(country, true);
     }
 
-    // TODO: is this ok to have OpinionSupport in CountryDTO?
     private CountryDTO countryToDTO(Country country, boolean isDetail) {
         CountryDTO countryDTO = new CountryDTO();
         countryDTO.setId(country.getId());
@@ -54,7 +53,6 @@ public class CountryService {
         OpinionSupportDTO opinionSupportDTO = new OpinionSupportDTO();
         opinionSupportDTO.setId(opinionSupport.getId());
         opinionSupportDTO.setSupportersCount(opinionSupport.getSupportersCount());
-        opinionSupportDTO.setOpinion(opinionSupport.getTeam().getOpinion());
         opinionSupportDTO.setTeamName(opinionSupport.getTeam().getName());
         opinionSupportDTO.setTeamColor(opinionSupport.getTeam().getColorHex());
         return opinionSupportDTO;

@@ -62,7 +62,4 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
         float constant = 100f / MAX_TRUST_IN_STATE;
         return Math.round(trustInState * constant);
     }
-
 }
-//TODO: do helper class instead of abstract class?
-//TODO: R should have some common interface?
