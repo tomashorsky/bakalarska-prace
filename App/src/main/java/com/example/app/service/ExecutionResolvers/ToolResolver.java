@@ -37,12 +37,13 @@ public class ToolResolver extends AbstractResolver<Tool, ToolUsage> {
     protected int calculateImpactByType(Tool tool, Team team, Country country) {
         int mediaLiteracy = country.getMediaLiteracy().getValue();
         int trustInState = getNormalizedTrustInState(country);
-        int opinionSupport = getNormalizedOpinionSupporters(country, team);
+        int opinionSupport = opinionSupportRepository.findByCountryIdAndTeamId(country.getId(), team.getId()).getSupportersCount();
+        int opinionSupportNorm = getNormalizedOpinionSupporters(country, team);
 
         return switch (tool.getType()) {
-            case TROLL_FARM -> calculateImpact(opinionSupport);
-            case DEEPFAKE_MAKER -> calculateImpactNegative(trustInState);
-            case FAKE_NEWS_SITE -> calculateImpact(mediaLiteracy);
+            case TROLL_FARM -> calculateImpact(opinionSupport, opinionSupportNorm);
+            case DEEPFAKE_MAKER -> calculateImpactNegative(opinionSupport, trustInState);
+            case FAKE_NEWS_SITE -> calculateImpact(opinionSupport, mediaLiteracy);
         };
     }
 }

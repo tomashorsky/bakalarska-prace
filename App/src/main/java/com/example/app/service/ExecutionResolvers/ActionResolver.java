@@ -34,14 +34,15 @@ public class ActionResolver extends AbstractResolver<Action, Action> {
         int economy = country.getEconomy().getValue();
         int mediaLiteracy = country.getMediaLiteracy().getValue();
         int trustInState = getNormalizedTrustInState(country);
-        int opinionSupport = getNormalizedOpinionSupporters(country, team);
+        int opinionSupport = opinionSupportRepository.findByCountryIdAndTeamId(country.getId(), team.getId()).getSupportersCount();
+        int opinionSupportNorm = getNormalizedOpinionSupporters(country, team);
 
         return switch (action.getType()) {
-            case DISINFORMATION -> calculateImpact(economy);
-            case MICRO_TARGETING -> calculateImpactNegative(mediaLiteracy);
-            case ASTROTURFING -> calculateImpactNegative(opinionSupport);
-            case ECHO_CHAMBERS -> calculateImpactNegative(economy);
-            case MALINFORMATIONS -> calculateImpact(trustInState);
+            case DISINFORMATION -> calculateImpact(opinionSupport, economy);
+            case MICRO_TARGETING -> calculateImpactNegative(opinionSupport, mediaLiteracy);
+            case ASTROTURFING -> calculateImpactNegative(opinionSupport, opinionSupportNorm);
+            case ECHO_CHAMBERS -> calculateImpactNegative(opinionSupport, economy);
+            case MALINFORMATIONS -> calculateImpact(opinionSupport, trustInState);
         };
     }
 }
