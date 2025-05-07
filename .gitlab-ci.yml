@@ -4,12 +4,14 @@ stages:
   - build
   - test
 
-"Build JAR":
+Build App:
     stage: build
     script:
+        - cd App 
         - mvn clean compile
 
-"Run tests":
+Run tests:
     stage: test
     script:
+        - cd App
         - mvn clean test
