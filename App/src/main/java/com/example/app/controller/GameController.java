@@ -35,16 +35,18 @@ public class GameController {
         GameDTO game = gameService.getGame(id);
         List<TeamDTO> teams = teamService.getAllTeamsFromGame(id);
         List<CountryDTO> countries = countryService.getAllCountriesFromGame(id);
+        String gameUrl = gameService.getGameUrl(id);
 
         model.addAttribute("game", game);
         model.addAttribute("teams", teams);
         model.addAttribute("countries", countries);
+        model.addAttribute("gameUrl", gameUrl);
         return "games/detail";
     }
 
     @GetMapping("admin/games/new") //TODO: change to add
     public String showCreateForm(Model model) {
-        GameDTO game =  GameDTO.builder().numberOfCountries(4).build();
+        GameDTO game =  GameDTO.builder().numberOfCountries(4).numberOfTeams(3).build();
 
         model.addAttribute("game",game);
         return "games/add";

@@ -9,6 +9,7 @@ import com.example.app.repository.GameRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -30,6 +31,15 @@ public class GameService {
         return gameToDTO(game);
     }
 
+    public String getGameUrl(Long id) {
+        Game game = gameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Game not found"));
+        return ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("teams/select?gameId={id}")
+                .buildAndExpand(game.getId())
+                .toUriString();
+    }
+
+    // Check if the game is in progress
     public boolean isGameInProgress(Long id) {
         Game game = gameRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Game not found"));
         return game.getPhase() == GamePhase.IN_PROGRESS;
@@ -75,11 +85,7 @@ public class GameService {
         gameToDTO(gameRepository.save(game));
     }
 
-    /**
-     * Change the economic situations of all countries in the game.
-     *
-     * @param game The game instance to change economic situations for.
-     */
+    // Change the economic situations of all countries in the game randomly
     public void changeEconomicSituations(Game game) {
         game.getCountries().forEach(country -> {
             country.setEconomy(SituationLevel.getRandom());
