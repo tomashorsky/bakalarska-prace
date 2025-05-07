@@ -1,5 +1,6 @@
 package com.example.app.service;
 
+import com.example.app.config.GameMessageProperties;
 import com.example.app.entity.Action;
 import com.example.app.entity.Country;
 import com.example.app.entity.Team;
@@ -11,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.MessageFormat;
+
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +21,7 @@ public class ActionService {
     private final TeamRepository teamRepository;
     private final CountryRepository countryRepository;
     private final ActionResolver actionResolver;
+    private final GameMessageProperties gameMessages;
 
     @Transactional
     public String executeAction(Long teamId, Long countryId, String actionType) {
@@ -27,7 +31,6 @@ public class ActionService {
         Action action = new Action();
         action.setType(ActionType.valueOf(actionType));
         int result = actionResolver.resolveExecution(action, team, country);
-        return "Manipulační akcí na stát " + country.getName() + " jste získali <strong>" + result +
-                "</strong>  tisíc nových zmanipulovaných.";
+        return MessageFormat.format(gameMessages.getActionSuccess(), country.getName(), result);
     }
 }

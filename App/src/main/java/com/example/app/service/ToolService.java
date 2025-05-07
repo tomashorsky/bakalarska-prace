@@ -1,5 +1,6 @@
 package com.example.app.service;
 
+import com.example.app.config.GameMessageProperties;
 import com.example.app.dto.ToolDTO;
 import com.example.app.entity.Country;
 import com.example.app.entity.Team;
@@ -12,6 +13,7 @@ import com.example.app.service.ExecutionResolvers.ToolResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class ToolService {
     private final TeamRepository teamRepository;
     private final CountryRepository countryRepository;
     private final ToolResolver toolResolver;
+    private final GameMessageProperties gameMessages;
 
     public List<ToolDTO> getToolsByTeamId(Long teamId) {
         return toolRepository.findAllByTeamIdOrderByType(teamId).stream().map(this::toolToDTO).toList();
@@ -33,8 +36,7 @@ public class ToolService {
         tool.setType(ToolType.valueOf(toolType));
         tool.setTeam(team);
         toolRepository.save(tool);
-        return "Manipulační nástroj <strong>" + tool.getType().getLabel() + "</strong> byl úspěšně přidán, nyní ho můžete začít používat.";
-    }
+        return MessageFormat.format(gameMessages.getToolAdded(), tool.getType().getLabel()); }
 
     public String executeTool(Long teamId, Long toolId, Long countryId) {
         Tool tool = toolRepository.findById(toolId).orElseThrow(() -> new IllegalArgumentException("Tool not found"));
@@ -42,8 +44,7 @@ public class ToolService {
         Country country = countryRepository.findById(countryId).orElseThrow(() -> new IllegalArgumentException("Country not found"));
 
         int result = toolResolver.resolveExecution(tool, team, country);
-        return  "Použitím manipulační nástroje na stát " + country.getName() + " jste získali jste <strong>" + result +
-                "</strong>  tisíc nových zmanipulovaných.";
+        return  MessageFormat.format(gameMessages.getToolSuccess(), country.getName(), result);
     }
 
     public List<ToolType> getUnownedTools(Long teamId) {

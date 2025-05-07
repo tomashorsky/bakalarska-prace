@@ -40,3 +40,9 @@ game-defaults:
     - name: "Oranžový tým"
       colorHex: "#fd7e14"
       opinion: "Žlutá dezinformace"
+
+game-messages:
+  action-success: "Manipulační akcí na stát {0} jste získali <strong>{1}</strong> tisíc nových zmanipulovaných."
+  tool-success: "Použitím manipulačního nástroje na stát {0} jste získali <strong>{1}</strong> tisíc nových zmanipulovaných."
+  tool-added: "Manipulační nástroj <strong>{0}</strong> byl úspěšně přidán. Nyní ho můžete začít používat."
+

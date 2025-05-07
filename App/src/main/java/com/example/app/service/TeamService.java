@@ -24,7 +24,6 @@ public class TeamService {
         return teamToDTO(team);
     }
 
-
     private TeamDTO teamToDTO(Team team) {
         TeamDTO teamDTO = new TeamDTO();
         teamDTO.setId(team.getId());

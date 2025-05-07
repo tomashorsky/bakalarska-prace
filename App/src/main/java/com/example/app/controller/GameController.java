@@ -56,7 +56,6 @@ public class GameController {
         return "redirect:/admin/games/" + createdGame.getId();
     }
 
-    //TODO: is it ok to use post instead of patch and delete?
 
     @PostMapping("admin/games/{id}/phase")
     public String changeGamePhase(@PathVariable Long id, @RequestParam GamePhase phase) {
