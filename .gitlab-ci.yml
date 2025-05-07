@@ -1,0 +1,15 @@
+image: maven:3.9.9-eclipse-temurin-21-alpine
+
+stages:
+  - build
+  - test
+
+"Build JAR":
+    stage: build
+    script:
+        - mvn clean compile
+
+"Run tests":
+    stage: test
+    script:
+        - mvn clean test
