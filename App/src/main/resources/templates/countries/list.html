@@ -15,7 +15,7 @@
             <div class="card-body">
                 <h4 class="card-title" th:text="${country.name}">Název státu</h4>
 
-                <!-- Názory jako graf -->
+                <!-- Graph with number of manipulated people -->
                 <div th:if="${country.opinionSupports != null}">
                     <div th:attr="id='chart-country-' + ${country.id}" style="height: 250px;"></div>
 
@@ -26,7 +26,6 @@
                              th:attr="data-team=${op.teamName}"
                              th:attrappend="data-supporters=${op.supportersCount},
                              data-color=${op.teamColor}">
-
                         </div>
                     </div>
                 </div>
@@ -41,7 +40,7 @@
     </div>
 </div>
 
-<!-- Zpět na hru -->
+<!-- Back to game -->
 <div class="mt-5 text-center">
     <a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-primary">Zpět na tým</a>
 </div>
@@ -91,6 +90,5 @@
         });
     }
 </script>
-<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>
