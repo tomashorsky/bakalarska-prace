@@ -7,25 +7,27 @@
 </head>
 <body class="container mt-5">
 
-<h1 class="text-center mb-5" th:text="${team.name}">Tým</h1>
-
-
 <form th:action="@{/teams/{id}/actions/execute(id=${team.id})}" method="post">
 
     <!-- Select Action -->
-    <input type="hidden" name="actionType" id="selectedAction" required />
-
     <h3 class="mb-3">Zvol akci:</h3>
-    <div class="mb-4">
-        <div class="card mb-3"
-             th:each="type : ${actionTypes}"
-             th:attr="data-action=${type.name()}"
-             onclick="selectAction(this)"
-             style="cursor: pointer;">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${type.label}">Nástroj</h5>
-                <p class="card-text" th:text="${type.getDescription()}">Popis</p>
-            </div>
+    <div class="mb-4 gap-2 d-flex flex-column" role="group" aria-label="Výběr akce">
+        <div th:each="type, iter : ${actionTypes}">
+            <input type="radio"
+                   class="btn-check"
+                   name="actionType"
+                   th:id="'action-' + ${iter.index}"
+                   th:value="${type.name()}"
+                   required />
+
+            <label class="card btn btn-outline-primary text-start"
+                   th:for="'action-' + ${iter.index}"
+                   style="cursor: pointer;">
+                <div class="card-body p-2">
+                    <h5 class="card-title" th:text="${type.label}">Název</h5>
+                    <p class="card-text" th:text="${type.getDescription()}">Popis</p>
+                </div>
+            </label>
         </div>
     </div>
 
@@ -47,7 +49,6 @@
         </div>
     </div>
 
-
     <!-- Back and Submit -->
     <div class="row mt-5">
         <div class="col text-start">
@@ -58,14 +59,6 @@
         </div>
     </div>
 </form>
-
-<script>
-    function selectAction(card) {
-        document.querySelectorAll('.card').forEach(c => c.classList.remove('bg-primary', 'text-white'));
-        card.classList.add('bg-primary', 'text-white');
-        document.getElementById('selectedAction').value = card.getAttribute('data-action');
-    }
-</script>
 
 </body>
 </html>

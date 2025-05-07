@@ -9,37 +9,45 @@
 
 <h1 class="text-center mb-5">Manipulační nástroje</h1>
 
+<!-- Team has no Tools -->
 <div th:if="${#lists.isEmpty(tools)}" class="alert alert-info text-center">
     <p class="mb-3">Tvůj tým zatím nevlastní žádné nástroje.</p>
-    <a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-primary btn">
-        Zpět na tým
-    </a>
+    <a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-primary btn-lg">Zpět na tým</a>
 </div>
 
 <form th:if="${!#lists.isEmpty(tools)}" th:action="@{/teams/{teamId}/tools/execute(teamId=${team.id})}" method="post">
-    <input type="hidden" name="toolId" id="selectedTool" required />
 
     <!-- Team Tools -->
     <h3 class="mb-3">Vyber nástroj:</h3>
-    <div class="mb-4">
-        <div class="card mb-3"
-             th:each="tool : ${tools}"
-             th:attr="data-tool-id=${tool.id}, data-can-be-used-at=${tool.canBeUsedAt}"
-             onclick="selectTool(this)"
-             style="cursor: pointer;">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${tool.type.label}">Název nástroje</h5>
-                <p class="card-text text-muted">
-                    Dostupné za: <span class="countdown" th:id="'countdown-' + ${tool.id}"></span>
-                </p>
-            </div>
+    <div class="mb-4" role="group" aria-label="Výběr nástroje">
+        <div th:each="tool, iter : ${tools}">
+            <input type="radio"
+                   class="btn-check"
+                   name="toolId"
+                   th:id="'tool-' + ${iter.index}"
+                   th:value="${tool.id}"
+                   th:disabled="${tool.canBeUsedAt > T(java.time.LocalDateTime).now()}"
+                   required />
+            <label class="card btn btn-outline-warning text-start mb-2"
+                   th:for="'tool-' + ${iter.index}"
+                   th:attr="data-can-be-used-at=${tool.canBeUsedAt}"
+                   style="cursor: pointer;">
+                <div class="card-body p-2">
+                    <h5 class="card-title mb-1" th:text="${tool.type.label}">Název</h5>
+                    <p class="card-text mb-0 small countdown-wrapper">
+                        <span class="countdown-label">Nástroj dostupný za:</span>
+                        <span class="countdown" th:id="'countdown-' + ${tool.id}"></span>
+                    </p>
+
+                </div>
+            </label>
         </div>
     </div>
 
-    <!-- Výběr země -->
+    <!-- Select Country -->
     <h3 class="mt-5 mb-3">Zvol cílovou zemi:</h3>
     <div class="btn-group d-flex flex-wrap gap-2" role="group">
-        <div th:block th:each="country, iter : ${countries}">
+        <div th:each="country, iter : ${countries}">
             <input type="radio"
                    class="btn-check"
                    name="countryId"
@@ -54,57 +62,39 @@
         </div>
     </div>
 
-    <!-- Tlačítka -->
+    <!-- Back and Submit -->
     <div class="row mt-5">
         <div class="col text-start">
             <a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-primary">Zpět na tým</a>
         </div>
         <div class="col text-end">
-            <button type="submit" class="btn btn-danger btn-lg" th:disabled="${!gameInProgress}">Použít nástroj 🚀</button>
+            <button type="submit" class="btn btn-warning btn-lg" th:disabled="${!gameInProgress}">Použít nástroj</button>
         </div>
     </div>
-
 </form>
 
-<!-- JS pro odpočítávání a výběr nástroje -->
+<!-- JS for countdown -->
 <script>
-    function selectTool(card) {
-        const now = new Date();
-        const availableAt = new Date(card.getAttribute('data-can-be-used-at'));
-
-        if (availableAt > now) {
-            alert("Tento nástroj ještě není dostupný!");
-            return;
-        }
-
-        document.querySelectorAll('.card').forEach(c => c.classList.remove('bg-primary', 'text-white'));
-        card.classList.add('bg-primary', 'text-white');
-        document.getElementById('selectedTool').value = card.getAttribute('data-tool-id');
-    }
-
     function updateCountdowns() {
-        const countdownElements = document.querySelectorAll('.countdown');
+        document.querySelectorAll('.countdown').forEach(el => {
+            const parent = el.closest('label');
+            const availableAtStr = parent.getAttribute('data-can-be-used-at');
+            if (!availableAtStr) return;
 
-        countdownElements.forEach(el => {
-            const parent = el.closest('.card');
-            const availableAt = new Date(parent.getAttribute('data-can-be-used-at'));
-            const now = new Date();
-
-            const diff = availableAt - now;
-
+            const availableAt = new Date(availableAtStr);
+            const diff = availableAt - new Date();
             if (diff <= 0) {
-                el.innerText = "dostupné";
+                el.previousElementSibling.innerText = "Nástroj je dostupný";
+                el.remove();
             } else {
-                const minutes = Math.floor(diff / 60000);
-                const seconds = Math.floor((diff % 60000) / 1000);
-                el.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                const min = Math.floor(diff / 60000);
+                const sec = Math.floor((diff % 60000) / 1000);
+                el.innerText = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
             }
         });
     }
-
     setInterval(updateCountdowns, 1000);
     updateCountdowns();
 </script>
-
 </body>
 </html>

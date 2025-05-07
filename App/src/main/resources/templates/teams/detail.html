@@ -13,21 +13,21 @@
     <h1 th:text="${team.name}">Název týmu</h1>
     <p>
         Úkolem tvého týmu je šířit názor:<br>
-        <strong><span th:text="${team.opinion}">dezinformace</span></strong>
+        <span th:text="${team.opinion}" class="fw-bold">dezinformace</span>
     </p>
 </div>
 
 <!-- Actions -->
 <div class="mb-4">
     <h3>Manipulační akce</h3>
-    <p>Prováděj psychologické a informační operace pro ovlivnění veřejného mínění.</p>
+    <p>Prováděj manipulační akce na stanovištích, kterými ovlivníš veřejné mínění!</p>
     <a th:href="@{/teams/{id}/actions(id=${team.getId()})}" class="btn btn-lg btn-primary ">Provést akci ⚡</a>
 </div>
 
 <!-- Tools -->
 <div class="mb-4">
     <h3 class="text-rg-end">Manipulační nástroje</h3>
-    <p>Spravuj nástroje, které ti pomáhají ovládat narativ a manipulovat informacemi.</p>
+    <p>Získej a spravuj nástroje, které ti pomohou manipulovat s lidmy a šířit tvůj názor!</p>
     <div class="gap-3 flex-wrap d-flex justify-content-center">
         <a th:href="@{/teams/{id}/tools(id=${team.getId()})}" class="btn btn-lg btn-warning text-dark">Zobrazit nástroje 🛠️</a>
         <a th:href="@{/teams/{id}/tools/add(id=${team.getId()})}" class="btn btn-lg btn-warning">➕ Přidat nástroj</a>
@@ -37,7 +37,7 @@
 <!-- Countries -->
 <div class="mb-4">
     <h3>Státy</h3>
-    <p>Zobraz aktuální stav a vliv týmu v jednotlivých zemích.</p>
+    <p>Zobraz aktuální stav států a počty ovlivněných v jednotlivých zemích.</p>
     <a th:href="@{/teams/{teamId}/countries(teamId=${team.id})}"  class="btn btn-lg btn-success">Zobrazit státy 🗺️</a>
 </div>
 
