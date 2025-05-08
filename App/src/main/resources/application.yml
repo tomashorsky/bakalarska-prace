@@ -23,23 +23,27 @@ game-defaults:
   teams:
     - name: "Modrý tým"
       colorHex: "#0dcaf0"
-      opinion: "Evropa by měla přestat podporovat Ukrajinu"
+      opinion: "Měli bychom přestat podporovat Ukrajinu a soustředit se na vlastní občany."
 
     - name: "Červený tým"
       colorHex: "#dc3545"
-      opinion: "Evropa by "
+      opinion: "Evropa by se měla zbavit amerických vojenských základen a být zcela nezávislá."
 
     - name: "Zelený tým"
       colorHex: "#198754"
-      opinion: "Velmi dlouhá a delší manipulace xxxxx aaaaaaaaaaa"
+      opinion: "Zelená politika EU ničí ekonomiku a dělá život dražší. Měli bychom rušit zelené zákony."
 
     - name: "Oranžový tým"
       colorHex: "#fd7e14"
-      opinion: "Žlutá dezinformace"
+      opinion: "Jaderná energetika je příliš nebezpečná, měli bychom se zbavit jaderných elektráren."
 
-    - name: "Oranžový tým"
-      colorHex: "#fd7e14"
-      opinion: "Žlutá dezinformace"
+    - name: "Růžový tým"
+      colorHex: "#d63384"
+      opinion: "Migranti ohrožují naši kulturu a bezpečnost, měly bychom jim zavřít hranice."
+
+    - name: "Žlutý tým"
+      colorHex: "#ffc107"
+      opinion: "Vodík je budoucnost energetiky, měli bychom masivně investovat do vodíkové infrastruktury."
 
 game-messages:
   action-success: "Manipulační akcí na stát {0} jste získali <strong>{1}</strong> tisíc nových ovlivněných."

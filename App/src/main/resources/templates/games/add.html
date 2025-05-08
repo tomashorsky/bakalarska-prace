@@ -11,8 +11,8 @@
     <h2 class="mb-4">Create Game</h2>
     <form th:action="@{/admin/games}" th:object="${game}" method="post">
         <div class="mb-3">
-            <label th:for="numberOfTeams" class="form-label fw-bold">Number of Teams (1-5)</label>
-            <input type="number" th:field="*{numberOfTeams}" class="form-control" required min="1" max="5"/>
+            <label th:for="numberOfTeams" class="form-label fw-bold">Number of Teams (1-6, recommended 4 players per team)</label>
+            <input type="number" th:field="*{numberOfTeams}" class="form-control" required min="1" max="6"/>
         </div>
 
         <div class="mb-3">
