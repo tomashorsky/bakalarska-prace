@@ -26,10 +26,18 @@ public class ToolService {
     private final ToolResolver toolResolver;
     private final GameMessageProperties gameMessages;
 
+    // get all game tools
     public List<ToolDTO> getToolsByTeamId(Long teamId) {
         return toolRepository.findAllByTeamIdOrderByType(teamId).stream().map(this::toolToDTO).toList();
     }
 
+    /**
+     * Adds a new tool to a team.
+     *
+     * @param teamId   the ID of the team
+     * @param toolType the type of tool to add
+     * @return a message indicating the result of the operation
+     */
     public String addTool(Long teamId, String toolType) {
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
         Tool tool = new Tool();
@@ -38,7 +46,14 @@ public class ToolService {
         toolRepository.save(tool);
         return MessageFormat.format(gameMessages.getToolAdded(), tool.getType().getLabel());
     }
-
+    /**
+     * Executes a tool for a given team and country, using ToolResolver.
+     *
+     * @param teamId    the ID of the team
+     * @param toolId    the ID of the tool
+     * @param countryId the ID of the country
+     * @return a message indicating the result of the tool execution
+     */
     public String executeTool(Long teamId, Long toolId, Long countryId) {
         Tool tool = toolRepository.findById(toolId).orElseThrow(() -> new IllegalArgumentException("Tool not found"));
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));
@@ -48,6 +63,12 @@ public class ToolService {
         return  MessageFormat.format(gameMessages.getToolSuccess(), country.getName(), result);
     }
 
+    /**
+     * Gets the list of ToolTypes that are not owned by a team.
+     *
+     * @param teamId the ID of the team
+     * @return list of unowned ToolTypes
+     */
     public List<ToolType> getUnownedTools(Long teamId) {
         List<ToolType> ownedTools = toolRepository.findAllByTeamIdOrderByType(teamId).stream()
                 .map(Tool::getType)

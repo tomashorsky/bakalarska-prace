@@ -20,6 +20,7 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
 
     /**
      * Resolves the execution of an operation based on the type of operation and the country.
+     *
      * @param operation The operation to be executed.
      * @param team      The team executing the operation.
      * @param country   The country affected by the operation.
@@ -29,6 +30,7 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
 
     /**
      * Calculates the impact of the operation based on the type of operation and the country.
+     *
      * @param operation The operation to be executed.
      * @param team      The team executing the operation.
      * @param country   The country affected by the operation.
@@ -38,6 +40,7 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
 
     /**
      * Records the impact of the operation on the country and opinion support.
+     *
      * @param country   The country affected by the operation.
      * @param operation The operation to be executed.
      * @param team      The team executing the operation.
@@ -60,6 +63,7 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
      * Calculates the impact as a base impact plus a bonus impact.
      * Bonus impact is calculated by dividing the stat value by a constant.
      * High opinion support will lower the impact.
+     *
      * @param opinionSupport The opinion support value to calculate the impact for.
      * @param statValue      The stat value to calculate the impact for. Should be between 0 and 100.
      * @return The calculated impact.
@@ -86,6 +90,7 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
     /**
      * Calculates the trust in state impact.
      * Its calculated as a small percentage of the country's trust in state.
+     *
      * @param country The country affected by the operation.
      * @return The calculated trust in state impact.
      */
@@ -95,6 +100,7 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
 
     /**
      * Normalizes the opinion supporters count to a number between 0 and 100.
+     *
      * @param country The country affected by the operation.
      * @param team    The team executing the operation.
      * @return The normalized opinion supporters count.
@@ -114,6 +120,7 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
 
     /**
      * Normalizes the trust in state to a number between 0 and 100.
+     *
      * @param country The country affected by the operation.
      * @return The normalized trust in state.
      */

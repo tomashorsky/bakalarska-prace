@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class GameInitializer {
-
     private final CountryRepository countryRepository;
     private final TeamRepository teamRepository;
     private final OpinionSupportRepository opinionSupportRepository;
@@ -23,6 +22,7 @@ public class GameInitializer {
 
     /**
      * Initializes the game with countries, teams, and opinion support.
+     *
      * @param game The game instance to initialize.
      */
     public void initializeGame(Game game) {
@@ -33,12 +33,13 @@ public class GameInitializer {
 
     /**
      * Initializes the countries for the game based on the game defaults.
+     *
      * @param game The game instance to initialize countries for.
      */
     private void initializeCountries(Game game) {
         int i = 0;
         for (GameDefaultsProperties.CountryData countryData : gameDefaults.getCountries()) {
-            if(i >= game.getNumberOfCountries()) {
+            if (i >= game.getNumberOfCountries()) {
                 break;
             }
             i++;
@@ -55,12 +56,13 @@ public class GameInitializer {
 
     /**
      * Initializes the teams for the game based on the game defaults.
+     *
      * @param game The game instance to initialize teams for.
      */
     private void initializeTeams(Game game) {
         int i = 0;
         for (GameDefaultsProperties.TeamData teamData : gameDefaults.getTeams()) {
-            if(i >= game.getNumberOfTeams()) {
+            if (i >= game.getNumberOfTeams()) {
                 break;
             }
             i++;
@@ -76,6 +78,7 @@ public class GameInitializer {
 
     /**
      * Initializes the opinion support for each country and team.
+     *
      * @param game The game instance to initialize opinion rates for.
      */
     private void initializeOpinionsSupport(Game game) {

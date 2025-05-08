@@ -23,6 +23,14 @@ public class ActionService {
     private final ActionResolver actionResolver;
     private final GameMessageProperties gameMessages;
 
+    /**
+     * Executes an action for a given team and country, using ActionResolver.
+     *
+     * @param teamId    the ID of the team
+     * @param countryId the ID of the country
+     * @param actionType the type of action to execute
+     * @return a message indicating the result of the action execution
+     */
     @Transactional
     public String executeAction(Long teamId, Long countryId, String actionType) {
         Team team = teamRepository.findById(teamId).orElseThrow(() -> new IllegalArgumentException("Team not found"));

@@ -80,9 +80,9 @@
     <tbody>
     <tr th:each="country : ${countries}">
         <td th:text="${country.name}"></td>
-        <td th:text="${country.mediaLiteracy.name()}"></td>
+        <td th:text="${country.mediaLiteracy.getName()}"></td>
         <td th:text="${country.trustInState} + ' %'" ></td>
-        <td th:text="${country.economy.name()}"></td>
+        <td th:text="${country.economy.getName()}"></td>
     </tr>
     </tbody>
 </table>

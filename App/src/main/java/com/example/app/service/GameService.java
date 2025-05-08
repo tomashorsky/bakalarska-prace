@@ -48,6 +48,7 @@ public class GameService {
 
     /**
      * Create a new game with the specified number of teams and countries.
+     *
      * @param gameDTO The game DTO containing the number of teams and countries.
      * @return The created game data transfer object.
      */
@@ -72,6 +73,7 @@ public class GameService {
 
     /**
      * Change the game phase, and if the phase is being changed from PAUSED to IN_PROGRESS, change the economic situations of all countries.
+     *
      * @param id    The ID of the game to change the phase for.
      * @param phase The new game phase.
      */

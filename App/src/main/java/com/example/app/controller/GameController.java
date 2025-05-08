@@ -46,9 +46,9 @@ public class GameController {
 
     @GetMapping("admin/games/new")
     public String showCreateForm(Model model) {
-        GameDTO game =  GameDTO.builder().numberOfCountries(4).numberOfTeams(3).build();
+        GameDTO game = GameDTO.builder().numberOfCountries(4).numberOfTeams(3).build();
 
-        model.addAttribute("game",game);
+        model.addAttribute("game", game);
         return "games/add";
     }
 
@@ -57,7 +57,6 @@ public class GameController {
         GameDTO createdGame = gameService.createGame(gameDTO);
         return "redirect:/admin/games/" + createdGame.getId();
     }
-
 
     @PostMapping("admin/games/{id}/phase")
     public String changeGamePhase(@PathVariable Long id, @RequestParam GamePhase phase) {
@@ -70,5 +69,4 @@ public class GameController {
         gameService.deleteGame(id);
         return "redirect:/admin/games";
     }
-
 }
