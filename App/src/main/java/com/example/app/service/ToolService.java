@@ -36,7 +36,8 @@ public class ToolService {
         tool.setType(ToolType.valueOf(toolType));
         tool.setTeam(team);
         toolRepository.save(tool);
-        return MessageFormat.format(gameMessages.getToolAdded(), tool.getType().getLabel()); }
+        return MessageFormat.format(gameMessages.getToolAdded(), tool.getType().getLabel());
+    }
 
     public String executeTool(Long teamId, Long toolId, Long countryId) {
         Tool tool = toolRepository.findById(toolId).orElseThrow(() -> new IllegalArgumentException("Tool not found"));
