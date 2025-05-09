@@ -14,7 +14,7 @@
     <span th:text="${#temporals.format(game.createdAt, 'dd.MM. yyyy')}">Created At</span>
 </p>
 <p><strong>Game URL:</strong>
-    <span id="game-url" th:text="${gameUrl}">Game URL</span>
+    <a id="game-url" th:href="${gameUrl}" th:text="${gameUrl}" target="_blank">Game URL</a>
     <button class="btn btn-sm btn-primary" onclick="copyGameUrl()">Copy</button>
     <span id="copy-msg" class="text-success fw-bold ms-2" style="display: none;">Copied!</span>
 </p>

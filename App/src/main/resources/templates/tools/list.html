@@ -68,7 +68,13 @@
             <a th:href="@{/teams/{id}(id=${team.id})}" class="btn btn-primary">Zpět na tým</a>
         </div>
         <div class="col text-end">
-            <button type="submit" class="btn btn-warning btn-lg" th:disabled="${!gameInProgress}">Použít nástroj</button>
+            <button
+                    type="submit"
+                    class="btn btn-warning btn-lg"
+                    th:disabled="${!gameInProgress}"
+                    onclick="return validateToolSelection();">
+                Použít nástroj
+            </button>
         </div>
     </div>
 </form>
@@ -93,6 +99,16 @@
             }
         });
     }
+
+    function validateToolSelection() {
+        const selectedTool = document.querySelector('input[name="toolId"]:checked');
+        if (!selectedTool) {
+            alert("Nejprve musíš vybrat nástroj.");
+            return false;
+        }
+        return true;
+    }
+
     setInterval(updateCountdowns, 1000);
     updateCountdowns();
 </script>
