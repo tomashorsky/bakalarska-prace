@@ -11,7 +11,7 @@ public abstract class AbstractResolver<R, T extends InfluenceOperation> {
     private static final int BASE_IMPACT = 10;
     private static final int BONUS_IMPACT_DIVIDER = 9;
     private static final int MAX_TRUST_IN_STATE = 71;
-    private static final float TRUST_IN_STATE_IMPACT_PERCENT = 0.15f;
+    private static final float TRUST_IN_STATE_IMPACT_PERCENT = 0.012f;
     private static final int OPINION_SUPPORT_THRESHOLD_LOW = 350;
     private static final int OPINION_SUPPORT_THRESHOLD_HIGH = 500;
 

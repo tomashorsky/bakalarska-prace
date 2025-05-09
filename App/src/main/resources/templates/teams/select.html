@@ -10,13 +10,12 @@
 <h1 class="text-center mb-4">Zvol si svůj tým</h1>
 
 <div class="d-grid gap-4 col-5 mx-auto">
-    <button type="button"
-            class="btn btn-lg text-white py-4"
-            th:each="team : ${teams}"
-            th:text="${team.name}"
-            th:style="'background-color:' + ${team.colorHex}"
-            th:onclick="'selectTeam(' + ${team.id} + ',' + ${game.id} + ')'">
-    </button>
+    <a  class="btn btn-lg text-white py-4"
+        th:each="team : ${teams}"
+        th:text="${team.name}"
+        th:style="'background-color:' + ${team.colorHex}"
+        th:href="@{/teams/{id}(id=${team.id})}">
+    </a>
 </div>
 </body>
 </html>
