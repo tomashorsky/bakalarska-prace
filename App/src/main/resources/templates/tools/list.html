@@ -30,7 +30,7 @@
                    required />
             <label class="card btn btn-outline-warning text-start mb-2"
                    th:for="'tool-' + ${iter.index}"
-                   th:attr="data-can-be-used-at=${tool.canBeUsedAt}"
+                   th:attr="data-can-be-used-at=${tool.canBeUsedAtInMillis}"
                    style="cursor: pointer;">
                 <div class="card-body p-2">
                     <h5 class="card-title mb-1" th:text="${tool.type.label}">Název</h5>
@@ -87,7 +87,7 @@
             const availableAtStr = parent.getAttribute('data-can-be-used-at');
             if (!availableAtStr) return;
 
-            const availableAt = new Date(availableAtStr);
+            const availableAt = new Date(parseInt(availableAtStr));
             const diff = availableAt - new Date();
             if (diff <= 0) {
                 el.previousElementSibling.innerText = "Nástroj je dostupný";

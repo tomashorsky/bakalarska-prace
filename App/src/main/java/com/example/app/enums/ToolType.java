@@ -9,7 +9,7 @@ public enum ToolType {
     TROLL_FARM(
             "Trollí farma",
             "Firma která zaměstnává desítky lidí, kteří ovládají tisíce falešných účtů na sociálních " +
-                    "sítích, prostřednictvým kterých píše provokatvní komentáře a šíří dezinformace. "
+                    "sítích, prostřednictvím kterých píše provokatvní komentáře a šíří dezinformace."
     ),
     DEEPFAKE_MAKER(
             "AI nástroj na deepfakes",
