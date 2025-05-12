@@ -14,6 +14,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.text.MessageFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,7 @@ public class ToolService {
         Tool tool = new Tool();
         tool.setType(ToolType.valueOf(toolType));
         tool.setTeam(team);
+        tool.setCanBeUsedAt(LocalDateTime.now());
         toolRepository.save(tool);
         return MessageFormat.format(gameMessages.getToolAdded(), tool.getType().getLabel());
     }
@@ -83,6 +86,7 @@ public class ToolService {
                 .id(tool.getId())
                 .type(tool.getType())
                 .teamId(tool.getTeam().getId())
+                .canBeUsedAtInMillis(tool.getCanBeUsedAt().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli())
                 .canBeUsedAt(tool.getCanBeUsedAt())
                 .build();
     }

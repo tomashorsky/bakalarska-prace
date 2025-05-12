@@ -17,4 +17,5 @@ public class ToolDTO {
     private ToolType type;
     private Long teamId;
     private LocalDateTime canBeUsedAt;
+    private Long canBeUsedAtInMillis;
 }
