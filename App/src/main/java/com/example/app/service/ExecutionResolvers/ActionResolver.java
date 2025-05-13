@@ -27,7 +27,7 @@ public class ActionResolver extends AbstractResolver<Action, Action> {
         actionRepository.save(action);
 
         recordImpact(country, action, team);
-       return impact;
+        return impact;
     }
 
     protected int calculateImpactByType(Action action, Team team, Country country) {
