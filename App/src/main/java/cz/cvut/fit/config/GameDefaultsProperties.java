@@ -1,0 +1,35 @@
+package cz.cvut.fit.config;
+
+import cz.cvut.fit.data.enums.SituationLevel;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+@ConfigurationProperties(prefix = "game-defaults")
+@Getter
+@Setter
+public class GameDefaultsProperties {
+    private List<CountryData> countries;
+    private List<TeamData> teams;
+
+    @Getter
+    @Setter
+    public static class CountryData {
+        private String name;
+        private SituationLevel mediaLiteracy;
+        private float trustInState;
+        private SituationLevel economy;
+    }
+
+    @Getter
+    @Setter
+    public static class TeamData {
+        private String name;
+        private String colorHex;
+        private String opinion;
+    }
+}
