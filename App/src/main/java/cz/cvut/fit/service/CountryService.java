@@ -1,5 +1,6 @@
 package cz.cvut.fit.service;
 
+import cz.cvut.fit.data.repository.OpinionSupportRepository;
 import cz.cvut.fit.service.dto.CountryDTO;
 import cz.cvut.fit.service.dto.OpinionSupportDTO;
 import cz.cvut.fit.data.entity.Country;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CountryService {
     private final CountryRepository countryRepository;
+    private final OpinionSupportRepository opinionSupportRepository;
 
     // get all game countries
     public List<CountryDTO> getAllCountriesFromGame(Long gameId) {
@@ -44,7 +46,8 @@ public class CountryService {
         countryDTO.setEconomy(country.getEconomy());
         countryDTO.setGameId(country.getGame().getId());
         if (isDetail) {
-            countryDTO.setOpinionSupports(country.getOpinionSupports().stream().map(this::opinionSupportToDTO).toList());
+            countryDTO.setOpinionSupports(opinionSupportRepository.findAllByCountryIdOrderById(country.getId())
+                    .stream().map(this::opinionSupportToDTO).toList());
         }
         return countryDTO;
     }
