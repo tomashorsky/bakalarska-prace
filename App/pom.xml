@@ -8,11 +8,11 @@
         <version>3.4.4</version>
         <relativePath/>
     </parent>
-    <groupId>com.example</groupId>
-    <artifactId>App</artifactId>
+    <groupId>cz.cvut.fit</groupId>
+    <artifactId>InfoWars</artifactId>
     <version>1.0.0</version>
-    <name>App</name>
-    <description>App</description>
+    <name>InfoWars</name>
+    <description>InfoWars</description>
     <url/>
     <licenses>
         <license/>

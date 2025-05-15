@@ -27,7 +27,7 @@
         </div>
         <div class="col-auto">
             <select name="phase" id="phase" class="form-select">
-                <option th:each="phase : ${T(com.example.app.enums.GamePhase).values()}"
+                <option th:each="phase : ${T(cz.cvut.fit.data.enums.GamePhase).values()}"
                         th:value="${phase}"
                         th:text="${phase}"
                         th:selected="${phase == game.phase}">
