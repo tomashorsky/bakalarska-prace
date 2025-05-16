@@ -1,5 +1,5 @@
 # Hra InfoWars
-Toto je aplikace ke sakutké hře InfoWars, vytvořené v rámci bakalářské práce _Strategická hra pro skauty s interaktivní webovou apliakací_.
+Toto je aplikace ke skautké hře InfoWars, vytvořené v rámci bakalářské práce Strategická hra pro skauty s interaktivní webovou apliakací.
 
 ## Lokální zprovoznění aplikace
 
@@ -10,8 +10,8 @@ Pro úspěšné spuštění a úpravu aplikace na lokálním počítači je pot�
 - IDE pro úpravu kódu (Napříkald IntelliJ Idea)
 - Java SDK (minimálně Java 17)
 - Java JRE (minimálně Java 17)
-- Maven
 - Spuštěnou PostgreSQL databázi ([Například podle tohoto návodu](https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/))
+- Maven
 
 ### Stažení projektu
 Projekt lze naklonovat z GitLab repozitáře pomocí příkazu:
@@ -22,12 +22,11 @@ git clone https://gitlab.fit.cvut.cz/horskto2/bakalarska-prace.git
 Pro připojení k databázi souboru je třeba upravit následující nastavení připojení v souboru `src/main/resources/application.properties`.
 
 ### Spuštění aplikace
-Po úspěšném nastavení připojení k databázi spusť aplikaci pomocí IDE, nebo následujícími příkazy:
-`./mvnw clean package -DskipTests`
+Po úspěšném nastavení připojení k databázi spusť aplikaci pomocí IDE, nebo následujícími příkazy:  
+`./mvnw clean package -DskipTests`  
 `java -jar target/InfoWars-1.0.0.jar`
 
-Aplikace bude poté dostupná na adrese:  
-[http://localhost:8080/admin/games](http://localhost:8080/admin/games)
+Aplikace bude poté dostupná na adrese: [http://localhost:8080/admin/games](http://localhost:8080/admin/games)
 
 ## Publikování nové verze
 
