@@ -7,11 +7,12 @@ Toto je aplikace ke skautké hře InfoWars, vytvořené v rámci bakalářské p
 Pro úspěšné spuštění a úpravu aplikace na lokálním počítači je potřeba mít připravené:
 
 - Git
+- Maven
 - IDE pro úpravu kódu (Napříkald IntelliJ Idea)
 - Java SDK (minimálně Java 17)
 - Java JRE (minimálně Java 17)
 - Spuštěnou PostgreSQL databázi ([Například podle tohoto návodu](https://www.docker.com/blog/how-to-use-the-postgres-docker-official-image/))
-- Maven
+
 
 ### Stažení projektu
 Projekt lze naklonovat z GitLab repozitáře pomocí příkazu:
