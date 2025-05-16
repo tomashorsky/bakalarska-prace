@@ -1,6 +1,5 @@
-# Vývojářská dokumentace
-
-Vývojářská dokumentace slouží jako technický průvodce pro vývojáře, kteří chtějí aplikaci *InfoWars* upravovat nebo dále rozvíjet.
+# Hra InfoWars
+Toto je aplikace ke sakutké hře InfoWars, vytvořené v rámci bakalářské práce _Strategická hra pro skauty s interaktivní webovou apliakací_.
 
 ## Lokální zprovoznění aplikace
 
@@ -19,7 +18,7 @@ git clone https://gitlab.fit.cvut.cz/horskto2/bakalarska-prace.git
 
 
 ### Připojení k databázi
-Pro připojení k databázi souboru je třeba upravit následující nastavení připojení v souboru `src/main/resources/application.properties`:
+Pro připojení k databázi souboru je třeba upravit následující nastavení připojení v souboru `src/main/resources/application.properties`.
 
 
 ## Publikování nové verze
